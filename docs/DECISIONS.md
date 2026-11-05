@@ -55,7 +55,7 @@ D-004, D-007, and D-015 are informed by the T-003 spike. Keep them open until it
 | D-023 | Default model/tier per development-agent role and escalation budget | deferred | product owner | WORKFLOW.md §9 (not a gate; revisit when model routing is needed) |
 | D-024 | 9Router deployment mode, provider/model shortlist, fallback, logging, and retention | deferred | product owner | WORKFLOW.md §9 (not a gate; revisit when model routing is needed) |
 | D-025 | Agent runtime: worktree/branch-per-issue model | accepted | product owner + engineer | WORKFLOW.md §10, `team/*` role prompts, D-023, D-024 |
-| D-026 | GitHub Issues as the canonical implementation tracker | accepted | product owner | TASKS.md, WORKFLOW.md, AGENTS.md, README.md, ROADMAP.md, `team/*` |
+| D-026 | GitHub Issues as the canonical implementation tracker | accepted | product owner | docs/archive/TASKS.md, WORKFLOW.md, AGENTS.md, README.md, ROADMAP.md, `team/*` |
 
 *D-023/D-024 are deferred: development agents use the default model until routing becomes necessary.*
 
@@ -106,16 +106,16 @@ Accepted decisions in ID order, with full rationale and consequences. Status of 
 - **Status:** accepted
 - **Date:** 2026-11-05
 - **Owner:** product owner
-- **Context:** The backlog needed shared, reviewable tracking beyond markdown checklists; `docs/TASKS.md` had reserved canonical status for "GitHub Issues once explicitly adopted".
+- **Context:** The backlog needed shared, reviewable tracking beyond markdown checklists; the markdown backlog had reserved canonical status for "GitHub Issues once explicitly adopted".
 - **Decision:**
-  - GitHub Issues is the canonical implementation tracker from tracker activation; until the repository is connected, `docs/TASKS.md` remains the working source of truth.
-  - Mapping: one task (T-xxx) → one issue. Seeded issues carry lightweight bodies drawn from `TASKS.md` (goal, refs, deps, exit criteria, type label). `team/pm.md` grooms a body into a full packet from `docs/TASK_TEMPLATE.md` only when the task becomes Ready.
+  - GitHub Issues is the canonical implementation tracker. The initial seed backlog is archived at `docs/archive/TASKS.md` and is not maintained.
+  - Mapping: one task (T-xxx) → one issue. Seeded issues carry lightweight bodies drawn from the archived seed backlog (`docs/archive/TASKS.md`) (goal, refs, deps, exit criteria, type label). `team/pm.md` grooms a body into a full packet from `docs/TASK_TEMPLATE.md` only when the task becomes Ready.
   - Labels: phase (`phase-1`…`phase-6`), type (`decision`, `scaffold`, `spike`, `backend`, `frontend`, `hardening`), status (`proposed`, `ready`, `in-progress`, `in-qa`, `blocked`), scope (`post-mvp`, for work moved out of a groomed task); completion is the closed state. Docs never duplicate issue status.
   - `decision`-type tasks close upon an accepted decision entry in `docs/DECISIONS.md` (evidence = the decision record).
   - Phase-0 decision work never becomes issues; decisions close within `DECISIONS.md`, and issue seeding covers the full implementation backlog (T-001–T-029). IDs are stable from tracker activation onward.
   - Cross-referencing: branches are named `issue-<n>`; PRs link issues; QA verdicts and completion evidence are issue comments.
-- **Consequences:** `AGENTS.md`, `README.md`, `ROADMAP.md`, `TASKS.md`, and `WORKFLOW.md` are updated in this documentation pass. Tracker activation remains a follow-up: install/authenticate `gh`, create the remote repository, enable Issues, configure labels, and seed the backlog.
-- **Affects:** TASKS.md, WORKFLOW.md, AGENTS.md, README.md, ROADMAP.md, `team/*`.
+- **Consequences:** `AGENTS.md`, `README.md`, `ROADMAP.md`, and `WORKFLOW.md` point to the tracker instead of a backlog file. Activation steps: authenticate `gh`, create the remote repository, create the labels, and seed one issue per task in T-xxx order so issue numbers match task numbers.
+- **Affects:** docs/archive/TASKS.md, WORKFLOW.md, AGENTS.md, README.md, ROADMAP.md, `team/*`.
 
 ## Superseded decisions
 

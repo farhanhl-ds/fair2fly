@@ -16,7 +16,7 @@ A spec-driven project for discovering flight deals, collecting persistent flight
 
 1. [`AGENTS.md`](AGENTS.md) — repository-wide rules and boundaries.
 2. [`docs/WORKFLOW.md`](docs/WORKFLOW.md) — roles, loop limits, routing, and handoffs.
-3. GitHub Issues (D-026) once the repository is connected — canonical tracker. Until then: [`docs/TASKS.md`](docs/TASKS.md) seed backlog and [`docs/TASK_TEMPLATE.md`](docs/TASK_TEMPLATE.md) packet format.
+3. GitHub Issues (D-026): canonical tracker. Packet format: [`docs/TASK_TEMPLATE.md`](docs/TASK_TEMPLATE.md).
 
 ## Documentation map
 
@@ -27,7 +27,7 @@ A spec-driven project for discovering flight deals, collecting persistent flight
 | `docs/SRS.md` | Functional/non-functional requirements, business rules, and testing invariants |
 | `docs/TECHNICAL_DESIGN.md` | Architecture, components, data concepts, security, and deployment |
 | `docs/ROADMAP.md` | Milestones, weekly sequencing, exit criteria, and scope control |
-| `docs/TASKS.md` | Backlog seed with IDs, references, and dependencies (canonical tracker: GitHub Issues, D-026) |
+| `docs/archive/TASKS.md` | Archived seed backlog; GitHub Issues is the canonical tracker (D-026) |
 | `docs/TASK_TEMPLATE.md` | Standard task packet with acceptance criteria and evidence |
 | `docs/DECISIONS.md` | Single decision log for open and resolved choices |
 | `docs/WORKFLOW.md` | Development-time agent graph, loops, routing, and model policy |
@@ -40,7 +40,7 @@ This is an initial specification baseline. Items marked **Open decision**, **Pro
 
 - The repository is initialized on `main` with specifications only; there is no application code yet.
 - Decision state, including accepted Phase-0 outcomes and everything still open, lives only in [`docs/DECISIONS.md`](docs/DECISIONS.md). A decision gates only the tasks in its *Affects* column.
-- Before the first engineering session: resolve D-023/D-024 (agent model routing). Platform decisions (D-010-D-013) are resolved just before the first task each one affects.
+- Platform decisions (D-010-D-013) are resolved just before the first task each one affects. Agent model routing (D-023/D-024) is deferred and gates nothing.
 
 ## Product principle
 

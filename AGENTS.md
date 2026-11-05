@@ -10,7 +10,7 @@ This repository implements a Flight Price Intelligence Platform. Its differentia
 - Testable requirements and invariants: `docs/SRS.md`
 - Architecture and technical decisions: `docs/TECHNICAL_DESIGN.md`
 - Milestones: `docs/ROADMAP.md`
-- Implementation backlog: GitHub Issues (D-026) once the repository is connected; until then `docs/TASKS.md` (seed)
+- Implementation backlog: GitHub Issues (D-026)
 - Open and resolved decisions: `docs/DECISIONS.md`
 - Development workflow: `docs/WORKFLOW.md`
 - API contracts: generated OpenAPI and `docs/API.md` once implemented; until then, `docs/TECHNICAL_DESIGN.md` §9
@@ -104,6 +104,6 @@ A task is complete only when:
 - Edge cases, security, authorization, provider constraints, and data integrity are considered.
 - API/domain/design/decision docs and tracker (issue) status are updated.
 - QA has independently reviewed non-trivial work.
-- The completion report includes changed files, commands/results, known limitations, and follow-up items.
+- The implementation report (an issue comment) includes changed files, commands/results, AC evidence, known limitations, and follow-up issues.
 
 See `docs/WORKFLOW.md` for the task lifecycle, loop limits, and handoff formats.

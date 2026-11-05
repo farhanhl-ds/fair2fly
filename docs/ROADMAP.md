@@ -2,7 +2,7 @@
 
 **Status:** Planning baseline.  
 **Target:** 4–6 weeks.  
-**Task backlog:** GitHub Issues (D-026) once the repository is connected; [`TASKS.md`](TASKS.md) is the current seed.
+**Task backlog:** GitHub Issues (D-026). Issue titles carry the T-xxx IDs used in this roadmap.
 
 ## Milestone 0 — Feasibility and product decisions
 

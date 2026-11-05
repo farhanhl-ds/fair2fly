@@ -59,17 +59,19 @@ Terminal states: `Done`, `Blocked`, `Escalated`, `Cancelled`. A task may not mov
 | Artifact | Location | Owner |
 |---|---|---|
 | Spec | `docs/PRD.md`, `docs/SRS.md`, or `docs/specs/<feature>.md` | PM |
-| Task packet | GitHub issue body groomed from `docs/TASK_TEMPLATE.md`, seeded from `docs/TASKS.md` (D-026) | PM/Orchestrator |
-| Implementation report | Task completion report or PR description | Engineer |
-| QA report | Task completion report or PR review | QA |
-| Docs report | Task completion report or PR description | Documentation |
+| Task packet | GitHub issue body groomed from `docs/TASK_TEMPLATE.md` (D-026) | PM/Orchestrator |
+| Implementation report | Issue comment (format in `team/engineer.md`) | Engineer |
+| QA report | Issue comment (format in `team/qa.md`) | QA |
+| Docs report | Issue comment (format in `team/documentation.md`) | Documentation |
 | Decisions | `docs/DECISIONS.md` | Product owner |
+
+The issue body is the spec written by the PM; engineer and QA never edit it and post comments instead. The PR description stays short and links the issue; evidence is not duplicated there.
 
 Evidence must include exact commands, outputs, AC mapping, and known limitations. Do not rely on chat summaries alone.
 
 ### 4.1 Issue lifecycle (tracker active, D-026)
 
-GitHub Issues carries task status; docs never duplicate it. Until tracker activation, statuses live in completion reports.
+GitHub Issues carries task status; docs never duplicate it.
 
 | State | Label | Set by |
 |---|---|---|

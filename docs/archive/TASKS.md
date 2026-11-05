@@ -1,24 +1,23 @@
-# Implementation Backlog
+# Implementation Backlog (Archived Seed)
 
-**Status:** Working backlog seed. GitHub Issues (D-026) becomes canonical on tracker activation; issue status lives in labels and open/closed state — never duplicated here.  
-**Source of truth:** This file until the repository is connected; GitHub Issues (D-026) thereafter.  
-**Roadmap:** [`ROADMAP.md`](ROADMAP.md) for milestone sequencing.
+**Status:** Archived. This file seeded the GitHub issues (D-026). GitHub Issues is the canonical tracker; this file is not maintained and must not be used for status.  
+**Roadmap:** [`ROADMAP.md`](../ROADMAP.md) for milestone sequencing.
 
 ## Backlog conventions
 
 - Every implementation task needs a task packet, acceptance criteria, dependencies, requirement references, and test expectations.
-- Do not start a task until its dependencies are complete and dependent decisions in [`DECISIONS.md`](DECISIONS.md) are resolved.
+- Do not start a task until its dependencies are complete and dependent decisions in [`DECISIONS.md`](../DECISIONS.md) are resolved.
 - Keep tasks small enough to implement, verify, and review in one focused work session where practical.
 - The PM may refine tasks but must not silently change product scope.
 - QA independently verifies non-trivial tasks.
 - Record evidence on the issue (or in the completion report until tracker activation) when complete.
-- One task (T-xxx) maps to one GitHub issue. Seeded issue bodies are lightweight (goal, refs, deps, exit criteria, type label); [`TASK_TEMPLATE.md`](TASK_TEMPLATE.md) grooming happens only when the task becomes Ready.
+- One task (T-xxx) maps to one GitHub issue. Seeded issue bodies are lightweight (goal, refs, deps, exit criteria, type label); [`TASK_TEMPLATE.md`](../TASK_TEMPLATE.md) grooming happens only when the task becomes Ready.
 - Labels: phase (`phase-1`…`phase-6`), type (`decision`, `scaffold`, `spike`, `backend`, `frontend`, `hardening`), status (`proposed`, `ready`, `in-progress`, `in-qa`, `blocked`), scope (`post-mvp`, for work moved out of a groomed task). Completion is the closed state.
-- IDs are dense and sequential: tasks T-001–T-029 align with the roadmap weeks; decisions D-001–D-026 group by theme (product/provider, platform/data, workflow). Decision work lives in [`DECISIONS.md`](DECISIONS.md), not in the backlog. A `decision`-labeled issue is reserved for decisions the product owner later chooses to track explicitly.
+- IDs are dense and sequential: tasks T-001–T-029 align with the roadmap weeks; decisions D-001–D-026 group by theme (product/provider, platform/data, workflow). Decision work lives in [`DECISIONS.md`](../DECISIONS.md), not in the backlog. A `decision`-labeled issue is reserved for decisions the product owner later chooses to track explicitly.
 
 ## Phase 0 — Feasibility and decisions (closed)
 
-Phase 0 produced decisions only; decision work does not enter the backlog or the tracker (D-026). Outcomes, rationale, and what remains open are recorded only in [`DECISIONS.md`](DECISIONS.md).
+Phase 0 produced decisions only; decision work does not enter the backlog or the tracker (D-026). Outcomes, rationale, and what remains open are recorded only in [`DECISIONS.md`](../DECISIONS.md).
 
 Gating rule: a decision blocks only the tasks in its *Affects* column. D-023/D-024 (agent model routing) are deferred and gate nothing.
 

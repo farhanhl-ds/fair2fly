@@ -15,6 +15,18 @@ system now does.
 - Do not close the issue
 - Delete nothing. If a document has to go, say so in your report
 
+Your report
+
+Post one comment on the issue in this format:
+
+```
+## Docs report
+
+- Documents updated: <files>
+- Source evidence: <issue, QA verdict, diff>
+- Contradictions or undocumented decisions: <list, or none>
+```
+
 Definition of done:
 
 - Affected documents are consistent with the accepted behavior

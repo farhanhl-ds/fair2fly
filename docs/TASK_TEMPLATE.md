@@ -1,8 +1,5 @@
 # [TASK-ID] — [Short, action-oriented title]
 
-**Status:** Proposed / Ready / In Progress / In QA / Blocked / Done  
-**Priority:** P0 / P1 / P2 / P3  
-**Owner/agent:**  
 **Spec:** [link to feature spec, PRD section, or SRS requirement]  
 **Requirement references:** FR-xxx / NFR-xxx / BR-xxx  
 **Dependencies:**  
@@ -39,9 +36,9 @@ Relevant product/technical context. Link to specific sections and files; do not 
 
 Use stable IDs so QA and tests can reference them.
 
-- [ ] **AC-1:** Given [context], when [action], then [observable result].
-- [ ] **AC-2:**
-- [ ] **AC-3:**
+- **AC-1:** Given [context], when [action], then [observable result].
+- **AC-2:**
+- **AC-3:**
 
 ## Must not change
 
@@ -77,13 +74,6 @@ Constraints, expected modules/interfaces, migration considerations, or known alt
 
 -
 
-## Completion report
+---
 
-- Changed files:
-- Tests/checks run:
-- Results:
-- AC evidence:
-- QA findings:
-- Documentation/decisions updated:
-- Known limitations:
-- Follow-up tasks:
+This body is the spec written by the PM. Engineer and QA do not edit it; they post their evidence as issue comments (formats in `team/engineer.md` and `team/qa.md`). Status lives in labels, not here.

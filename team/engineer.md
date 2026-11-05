@@ -40,6 +40,26 @@ tells you where it is.
   outside the repository, and leave databases and branches alone. If
   something has to go, say so in your report and let the user do it
 
+Your report
+
+When the work is committed and pushed, post one comment on the issue, then set
+the label `in-qa`. Use this format:
+
+```
+## Implementation report
+
+- Changed files: <list>
+- Commands run: `<command>` - <N passed, M failed>
+- AC evidence:
+  - AC-1: <test name or check> - <result>
+  - AC-2: <test name or check> - <result>
+- Docs and decisions updated: <files, or none>
+- Known limitations: <list, or none>
+- Follow-up: <links to issues, or none>
+```
+
+Do not edit the issue body. It is the PM's spec; report in comments only.
+
 Definition of done:
 
 - Every acceptance criterion in the issue is implemented
