@@ -14,28 +14,26 @@
 - Record evidence on the issue (or in the completion report until tracker activation) when complete.
 - One task (T-xxx) maps to one GitHub issue. Seeded issue bodies are lightweight (goal, refs, deps, exit criteria, type label); [`TASK_TEMPLATE.md`](TASK_TEMPLATE.md) grooming happens only when the task becomes Ready.
 - Labels: phase (`phase-0`…`phase-6`), type (`decision`, `scaffold`, `backend`, `frontend`, `hardening`), status (`proposed`, `ready`, `in-progress`, `in-qa`, `blocked`). Completion is the closed state.
-- `decision`-type tasks close when their decision is accepted in [`DECISIONS.md`](DECISIONS.md); Phase 0 (T-001–T-004) never becomes tracker issues.
+- Decision work lives in [`DECISIONS.md`](DECISIONS.md), not in the backlog: no backlog items exist before T-005, the first implementation task. Gaps in numbering reflect decisions made before the tracker existed (D-026), not missing tasks. A `decision`-labeled issue is reserved for decisions the product owner later chooses to track explicitly.
 
-## Phase 0 — Feasibility and decisions
+## Phase 0 — Feasibility and decisions (closed)
 
-Phase 0 is decision-only and closes without tracker issues (D-026). T-001 and T-002 are resolved; T-003 and T-004 resolve before T-005.
+Phase 0 produced decisions only; decision work does not enter the backlog or the tracker (D-026). Outcomes, with rationale and evidence, are recorded in [`DECISIONS.md`](DECISIONS.md):
 
-- [x] **T-001 — Evaluate flight API providers** — **Resolved 2026-11-05:** D-001 accepted (SerpApi `google_flights` via a replaceable adapter; quota/terms facts recorded). No issue filed per D-026.
-- [x] **T-002 — Confirm initial airport hubs** — **Resolved 2026-11-05:** D-002 accepted (CGK, DPS, SUB, KNO, JOG, UPG, BDO; OurAirports reference data). No issue filed per D-026.
-- [ ] **T-003 — Resolve platform service choices**  
-  Select authentication, exchange-rate source, email delivery, and hosting approach.  
-  **Refs:** FR-008–FR-010, FR-035–FR-036, NFR-010. **Deps:** none (T-001 resolved).  
-  **Exit:** Decisions and rationale recorded in D-008–D-011. **Must resolve before T-005.**
-- [ ] **T-004 — Validate development-agent runtime and model routing**  
-  Verify provider connectivity, tool calling, structured output, context limits, privacy/logging settings, and fallback behavior.  
-  **Refs:** development workflow only. **Deps:** none (runtime model accepted in D-023).  
-  **Exit:** Documented routing baseline; decisions D-021–D-022 updated (D-023 accepted 2026-11-05). **Must resolve before T-005.**
+- **D-001** (2026-11-05) — MVP fare source: Google Flights data via SerpApi, behind a replaceable adapter (NFR-001).
+- **D-002** (2026-11-05) — MVP hub set: CGK, DPS, SUB, KNO, JOG, UPG, BDO; OurAirports reference data.
+- **D-023** (2026-11-05) — worktree/branch-per-issue agent runtime (development workflow).
+
+Open decision gates before implementation starts:
+
+- **D-008–D-011** — authentication, exchange-rate source, email delivery, and hosting (required before T-005).
+- **D-021/D-022** — development-agent model routing and 9Router configuration (required before engineering sessions run).
 
 ## Phase 1 — Foundation (Week 1)
 
 - [ ] **T-005 — Initialize repository and local development environment**  
   Set up project structure, lint/format configuration, environment template, and developer commands.  
-  **Refs:** NFR-008, NFR-010. **Deps:** T-003.  
+  **Refs:** NFR-008, NFR-010. **Deps:** decision gates D-008–D-011 (see Phase 0).  
   **Exit:** Reproducible setup; exact commands added to `AGENTS.md`.
 
 - [ ] **T-006 — Create Docker Compose foundation**  
@@ -50,7 +48,7 @@ Phase 0 is decision-only and closes without tracker issues (D-026). T-001 and T-
 
 - [ ] **T-008 — Define provider adapter contract**  
   Establish provider-neutral request/response types, errors, quota metadata, and normalization boundary.  
-  **Refs:** FR-017, NFR-001. **Deps:** T-001, T-007.  
+  **Refs:** FR-017, NFR-001. **Deps:** T-007 (provider decision D-001 already accepted).  
   **Exit:** Contract documented and covered by focused tests.
 
 - [ ] **T-009 — Implement provider integration spike**  

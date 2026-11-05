@@ -4,7 +4,7 @@
 **Target:** 4–6 weeks.  
 **Task backlog:** GitHub Issues (D-026) once the repository is connected; [`TASKS.md`](TASKS.md) is the current seed.
 
-## Milestone 0 — Feasibility and product decisions (T-001–T-004)
+## Milestone 0 — Feasibility and product decisions (closed decisions: D-001, D-002, D-023)
 
 - [x] Compare flight API providers for Indonesian coverage, price/fare fields, quotas, terms, retention, and cost — D-001 accepted 2026-11-05.
 - [x] Confirm initial airport hubs — D-002 accepted 2026-11-05 (CGK, DPS, SUB, KNO, JOG, UPG, BDO).
@@ -12,7 +12,7 @@
 - [ ] Confirm authentication, currency-rate, email, and deployment choices (D-008–D-011).
 - [ ] Validate development-agent model routing (D-021–D-022; the runtime model itself is resolved in D-023).
 
-**Exit criteria:** One provider selected for MVP; permitted collection/storage behavior understood; initial airport list agreed; platform-service choices resolved before Week 1 (T-003–T-004).
+**Exit criteria:** One provider selected for MVP; permitted collection/storage behavior understood; initial airport list agreed; platform-service choices (D-008–D-011) and agent model routing (D-021/D-022) resolved before Week 1.
 
 ## Week 1 — Foundation (T-005–T-009)
 - Repository structure and development environment.
