@@ -7,7 +7,7 @@
 
 ## 1. Product summary
 
-**Working name:** Flight Price Intelligence Platform
+**Product name:** Fair2fly
 
 A public flight-deal discovery and price-intelligence platform focused initially on flights departing from Indonesia. It continuously collects flight-price observations, builds historical context, identifies attractive opportunities, and helps travelers decide whether to book, wait, or keep monitoring.
 

@@ -44,7 +44,8 @@ Decisions made while grooming, because later issues depend on them:
 5. **Skeletons belong here:** the roadmap lists the FastAPI and Next.js skeletons in Week 1, no other task creates them, and #2 expects them. Keep them minimal: one health endpoint, one page, one test each.
 6. **Ports from environment:** `API_PORT` and `WEB_PORT`, defaults in `.env.example`, so parallel worktrees do not collide.
 7. **Versions:** pin the latest stable versions supported by FastAPI and Next.js at the time of work, and record them in `README.md`.
-8. **AGENTS.md conflict:** it says T-001 must add the migration and end-to-end commands, which cannot exist before #4 and #25. AC-7 resolves this, and the engineer updates that sentence in this task.
+8. **Project name:** `fair2fly` in `pyproject.toml`, `package.json`, and the README title.
+9. **AGENTS.md conflict:** it says T-001 must add the migration and end-to-end commands, which cannot exist before #4 and #25. AC-7 resolves this, and the engineer updates that sentence in this task.
 
 ## Must not change (optional)
 
