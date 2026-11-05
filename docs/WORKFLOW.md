@@ -128,7 +128,7 @@ A task is **Ready** when:
 
 - Scope, non-goals, and acceptance criteria are explicit and testable.
 - Dependencies and related decisions are resolved.
-- The test plan maps acceptance criteria to checks.
+- Every acceptance criterion can be checked from a result, and edge and failure cases are listed.
 - Relevant specs, docs, and contracts are linked.
 - Security, authorization, and data-integrity impact are identified.
 

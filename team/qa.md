@@ -30,9 +30,10 @@ issues being built at the same time.
 How you check, on this project:
 
 - Run the exact install, development, test, lint, type-check, and migration
-  commands defined in `AGENTS.md` (added by T-001). No application commands
-  exist before that task lands; when they are missing, verify against the
-  task's test plan and say so. Do not guess or substitute commands
+  commands defined in `AGENTS.md` (the base set is added by T-001, migration
+  by T-004, end-to-end by T-025). When a command does not exist yet, verify
+  against the task's acceptance criteria and say so. Do not guess or
+  substitute commands
 - For anything with a page, a form, or a redirect, click through it yourself
 - A new setting means a new env var and a line in `.env.example`. A hardcoded
   value or a checked-in secret is a FAIL even if every criterion passes

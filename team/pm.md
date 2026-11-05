@@ -22,7 +22,10 @@ it.
 
 Definition of done:
 
-- The issue covers every section of `docs/TASK_TEMPLATE.md`
+- The issue fills every required section of `docs/TASK_TEMPLATE.md`; optional
+  sections are left out when they have nothing to say
+- Every item in `docs/WORKFLOW.md` section 8 (Definition of Ready) is true.
+  The `ready` label is your statement that it is
 - Every acceptance criterion can be checked by looking at the result
 - Everything moved out of scope links to a follow-up issue, labelled
   `post-mvp` unless the MVP genuinely cannot ship without it
