@@ -8,14 +8,16 @@ Status values: `open`, `proposed`, `accepted`, `superseded`.
 
 Decision IDs are stable from tracker activation (D-026) onward. Before tracker activation, on 2026-11-05, the product owner directed a one-time renumbering so decision and backlog IDs are dense and ASCII-ordered from the start; the mapping is recorded in the tracker decision (D-026). After activation, new decisions receive new IDs rather than renumbering existing entries.
 
-## Open decisions
+## Decision index
 
-Phase-0 provider and hub decisions are accepted (D-001, D-002, 2026-11-05); see Resolved decisions.
+Every decision appears in the tables below with its status. Accepted decisions (D-001, D-002, D-025, D-026) keep their full record, with rationale and consequences, under Resolved decisions.
 
 ### Product and provider
 
 | ID | Decision | Status | Owner | Affects |
 |---|---|---|---|---|
+| D-001 | MVP flight-data source: SerpApi Google Flights behind the provider adapter | accepted | product owner | FR-002, FR-004, FR-005, FR-006, FR-012–FR-013, FR-017, NFR-001–NFR-002, D-004, D-007, T-004–T-005, T-008 |
+| D-002 | Initial airport hub list (CGK, DPS, SUB, KNO, JOG, UPG, BDO) and OurAirports reference data | accepted | product owner | FR-005, FR-009, D-003, T-003, T-005 |
 | D-003 | Exact supported flexible-date and flexible-destination constraints | open | product owner | FR-004, FR-005, T-015, T-016 |
 | D-004 | Collection intervals, quota allocation, adaptive-monitoring policy, and tracking-mode rollout | open | product owner | FR-011–FR-013, T-008, T-016 |
 | D-005 | Minimum sample size, coverage, and staleness thresholds for statistics and recommendations | open | product owner | FR-018, FR-021, FR-023, T-011, T-013 |
@@ -50,12 +52,14 @@ Phase-0 provider and hub decisions are accepted (D-001, D-002, 2026-11-05); see 
 |---|---|---|---|---|
 | D-023 | Default model/tier per development-agent role and escalation budget | open | product owner | WORKFLOW.md (pre-implementation gate) |
 | D-024 | 9Router deployment mode, provider/model shortlist, fallback, logging, and retention | open | product owner | WORKFLOW.md (pre-implementation gate) |
+| D-025 | Agent runtime: worktree/branch-per-issue model | accepted | product owner + engineer | WORKFLOW.md §10, `team/*` role prompts, D-023, D-024 |
+| D-026 | GitHub Issues as the canonical implementation tracker | accepted | product owner | TASKS.md, WORKFLOW.md, AGENTS.md, README.md, ROADMAP.md, `team/*` |
 
-*D-025 is resolved (2026-11-05, worktree/branch-per-issue runtime) and D-026 is accepted (GitHub Issues tracker); see Resolved decisions. D-023/D-024 remain open and must be resolved before implementation starts (pre-T-001).*
+*D-023/D-024 must be resolved before implementation starts (pre-T-001).*
 
 ## Resolved decisions
 
-Accepted decisions in ID order. Open work continues in the sections above.
+Accepted decisions in ID order, with full rationale and consequences. Status of every decision is in the index above.
 
 ### D-001 — MVP flight-data source: SerpApi Google Flights
 
