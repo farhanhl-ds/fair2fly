@@ -36,6 +36,14 @@ A spec-driven project for discovering flight deals, collecting persistent flight
 
 This is an initial specification baseline. Items marked **Open decision**, **Proposed**, or **To validate** must be resolved before the affected implementation begins. Resolve and record decisions in [`docs/DECISIONS.md`](docs/DECISIONS.md). Do not turn assumptions into facts without recording the decision.
 
+## Status snapshot (2026-11-05)
+
+- Phase 0 complete where it matters: flight-data provider **D-001** (Google Flights data via SerpApi) and airport hubs **D-002** (CGK, DPS, SUB, KNO, JOG, UPG, BDO) are accepted.
+- Development-workflow decisions accepted: **D-023** (worktree/branch-per-issue agent runtime) and **D-026** (GitHub Issues becomes the canonical tracker on repository connection).
+- Repository is initialized on `main` with specs only; no application code yet.
+- Next: resolve **D-008–D-011** (auth, exchange rates, email, hosting) and **D-021/D-022** (model routing) — both required before **T-005** — then Week-1 foundation work starts.
+- All accepted reasoning and the full historical record of every decision live in [`docs/DECISIONS.md`](docs/DECISIONS.md) (single decision log).
+
 ## Product principle
 
 The platform's differentiator is its persistent, structured flight-price history, not one-time flight search. Analytics and AI recommendations must be grounded in observed data and communicate uncertainty.

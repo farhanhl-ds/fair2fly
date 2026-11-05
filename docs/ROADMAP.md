@@ -6,13 +6,13 @@
 
 ## Milestone 0 — Feasibility and product decisions (T-001–T-004)
 
-T-001–T-002 are resolved (D-001, D-002, 2026-11-05). T-003–T-004 must close before Week 1.
-- Compare flight API providers for Indonesian coverage, price/fare fields, quotas, terms, retention, and cost.
-- Confirm initial airport hubs.
-- Confirm authentication, currency-rate, email, and deployment choices.
-- Record risks and provider limitations.
+- [x] Compare flight API providers for Indonesian coverage, price/fare fields, quotas, terms, retention, and cost — D-001 accepted 2026-11-05.
+- [x] Confirm initial airport hubs — D-002 accepted 2026-11-05 (CGK, DPS, SUB, KNO, JOG, UPG, BDO).
+- [x] Record risks and provider limitations for the MVP — captured in D-001; live terms/coverage verification happens at T-009.
+- [ ] Confirm authentication, currency-rate, email, and deployment choices (D-008–D-011).
+- [ ] Validate development-agent model routing (D-021–D-022; the runtime model itself is resolved in D-023).
 
-**Exit criteria:** One provider selected for MVP; permitted collection/storage behavior understood; initial airport list agreed.
+**Exit criteria:** One provider selected for MVP; permitted collection/storage behavior understood; initial airport list agreed; platform-service choices resolved before Week 1 (T-003–T-004).
 
 ## Week 1 — Foundation (T-005–T-009)
 - Repository structure and development environment.
