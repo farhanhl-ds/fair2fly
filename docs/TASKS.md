@@ -20,13 +20,13 @@
 
 Phase 0 produced decisions only; decision work does not enter the backlog or the tracker (D-026). Outcomes, rationale, and what remains open are recorded only in [`DECISIONS.md`](DECISIONS.md).
 
-Gating rule: a decision blocks only the tasks in its *Affects* column. The one pre-implementation gate for every engineering session is D-023/D-024 (agent model routing).
+Gating rule: a decision blocks only the tasks in its *Affects* column. D-023/D-024 (agent model routing) are deferred and gate nothing.
 
 ## Phase 1 — Foundation (Week 1)
 
 - [ ] **T-001 — Initialize repository and local development environment**  
   Set up project structure, lint/format configuration, environment template, and developer commands.  
-  **Refs:** NFR-008, NFR-010. **Deps:** pre-implementation gate D-023/D-024 only.  
+  **Refs:** NFR-008, NFR-010. **Deps:** none.  
   **Exit:** Reproducible setup; exact commands added to `AGENTS.md`.
 
 - [ ] **T-002 — Create Docker Compose foundation**  
@@ -36,7 +36,7 @@ Gating rule: a decision blocks only the tasks in its *Affects* column. The one p
 
 - [ ] **T-003 — Spike: validate SerpApi Google Flights for the MVP**  
   Time-boxed exploration against the live provider: quota cost per tracked route, offer identity stability across repeated calls, available itinerary and fare attributes, coverage for the configured hubs, outbound-link usability, and redistribution terms. Spike code is throwaway; the findings are the deliverable.  
-  **Refs:** FR-006, FR-012–FR-013, FR-016–FR-017, NFR-001–NFR-002, BR-002. **Deps:** T-001; pre-implementation gate D-023/D-024.  
+  **Refs:** FR-006, FR-012–FR-013, FR-016–FR-017, NFR-001–NFR-002, BR-002. **Deps:** T-001.  
   **Exit:** Findings recorded in D-004, D-007, and D-015 (or in new decisions); sanitized sample payloads kept as fixtures; an explicit go/no-go on D-001 against criteria written in the groomed packet.
 
 - [ ] **T-004 — Define initial domain model and migrations**  

@@ -4,7 +4,7 @@
 **Purpose:** Single source of truth for open and resolved product, provider, platform, API, and development-workflow decisions.  
 **Rule:** Resolve a decision before implementing work that depends on it. **Gating rule:** a decision blocks only the tasks in its *Affects* column, never the whole backlog. Record the date, owner, rationale, consequences, and affected requirements/tasks.
 
-Status values: `open`, `proposed`, `accepted`, `superseded`.
+Status values: `open`, `proposed`, `accepted`, `deferred`, `superseded`. `deferred` means intentionally postponed: it blocks no task and is revisited when needed.
 
 Decision IDs are stable from tracker activation (D-026) onward. After activation, new decisions receive new IDs rather than renumbering existing entries.
 
@@ -52,12 +52,12 @@ D-004, D-007, and D-015 are informed by the T-003 spike. Keep them open until it
 
 | ID | Decision | Status | Owner | Affects |
 |---|---|---|---|---|
-| D-023 | Default model/tier per development-agent role and escalation budget | open | product owner | WORKFLOW.md (pre-implementation gate) |
-| D-024 | 9Router deployment mode, provider/model shortlist, fallback, logging, and retention | open | product owner | WORKFLOW.md (pre-implementation gate) |
+| D-023 | Default model/tier per development-agent role and escalation budget | deferred | product owner | WORKFLOW.md §9 (not a gate; revisit when model routing is needed) |
+| D-024 | 9Router deployment mode, provider/model shortlist, fallback, logging, and retention | deferred | product owner | WORKFLOW.md §9 (not a gate; revisit when model routing is needed) |
 | D-025 | Agent runtime: worktree/branch-per-issue model | accepted | product owner + engineer | WORKFLOW.md §10, `team/*` role prompts, D-023, D-024 |
 | D-026 | GitHub Issues as the canonical implementation tracker | accepted | product owner | TASKS.md, WORKFLOW.md, AGENTS.md, README.md, ROADMAP.md, `team/*` |
 
-*D-023/D-024 must be resolved before implementation starts (pre-T-001).*
+*D-023/D-024 are deferred: development agents use the default model until routing becomes necessary.*
 
 ## Resolved decisions
 

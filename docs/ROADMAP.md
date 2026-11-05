@@ -8,7 +8,7 @@
 
 Scope: select the MVP flight-data provider, confirm the initial airport hubs, record provider risks and limitations, and settle platform and agent-workflow choices. Status and outcomes live only in [`DECISIONS.md`](DECISIONS.md).
 
-**Exit criteria:** One provider selected for the MVP; permitted collection and storage behavior understood; initial airport list agreed; agent model routing (D-023/D-024) resolved before engineering starts. Platform decisions (D-010-D-013) are resolved before the first task each one affects, per the gating rule in `DECISIONS.md`.
+**Exit criteria:** One provider selected for the MVP; permitted collection and storage behavior understood; initial airport list agreed. Platform decisions (D-010-D-013) are resolved before the first task each one affects, per the gating rule in `DECISIONS.md`.
 
 ## Week 1 — Foundation (T-001–T-006)
 - Repository structure and development environment.

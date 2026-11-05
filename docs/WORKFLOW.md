@@ -143,7 +143,7 @@ A task is **Done** when it satisfies the canonical Definition of Done in `AGENTS
 - Fix ambiguous tasks and missing context before spending on a stronger model.
 - QA failure does not automatically mean "use a bigger model." Inspect the finding first.
 - Record the model/provider used for meaningful invocations.
-- Specific assignments, 9Router configuration, fallback behavior, and budgets are deferred to D-023 and D-024.
+- Specific assignments, 9Router configuration, fallback behavior, and budgets are deferred to D-023 and D-024, which are deferred decisions and gate no task.
 
 ## 10. Subagent runtime
 
