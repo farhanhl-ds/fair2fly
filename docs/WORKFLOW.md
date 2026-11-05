@@ -143,10 +143,10 @@ A task is **Done** when it satisfies the canonical Definition of Done in `AGENTS
 - Fix ambiguous tasks and missing context before spending on a stronger model.
 - QA failure does not automatically mean "use a bigger model." Inspect the finding first.
 - Record the model/provider used for meaningful invocations.
-- Specific assignments, 9Router configuration, fallback behavior, and budgets are deferred to D-021 and D-022.
+- Specific assignments, 9Router configuration, fallback behavior, and budgets are deferred to D-023 and D-024.
 
 ## 10. Subagent runtime
 
-Adopted model (D-023): worktree/branch-per-issue. The orchestrator provisions one git worktree, branch `issue-<n>`, and environment/database per engineer/QA session. Engineers implement, commit, and push only their own branch; they never merge, rebase main, or touch another branch (the orchestrator rebases; never force-push). QA verifies a single dedicated worktree and posts PASS/FAIL verdicts with evidence as issue comments. Destructive commands stop the run until a human approves.
+Adopted model (D-025): worktree/branch-per-issue. The orchestrator provisions one git worktree, branch `issue-<n>`, and environment/database per engineer/QA session. Engineers implement, commit, and push only their own branch; they never merge, rebase main, or touch another branch (the orchestrator rebases; never force-push). QA verifies a single dedicated worktree and posts PASS/FAIL verdicts with evidence as issue comments. Destructive commands stop the run until a human approves.
 
 Role prompts currently live in `team/`. If using opencode subagents directly, mirror them under `.opencode/agent/<name>.md` with frontmatter and permissions, referencing this workflow and `AGENTS.md` — never a second copy of role instructions.

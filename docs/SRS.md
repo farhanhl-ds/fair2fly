@@ -81,9 +81,9 @@ Define testable MVP system requirements for the Flight Price Intelligence Platfo
 - NFR-008: Critical backend logic shall have automated tests.
 - NFR-009: User-facing analytics shall identify insufficient or stale data.
 - NFR-010: The application shall be deployable using Docker.
-- NFR-011: Core search, analytics, assistant, and worker operations shall meet documented performance budgets (D-019).
-- NFR-012: Core user-facing flows shall meet the agreed accessibility target (D-018).
-- NFR-013: Personal data shall be minimized, access-controlled, and retained/deleted according to a documented policy (D-012).
+- NFR-011: Core search, analytics, assistant, and worker operations shall meet documented performance budgets (D-021).
+- NFR-012: Core user-facing flows shall meet the agreed accessibility target (D-020).
+- NFR-013: Personal data shall be minimized, access-controlled, and retained/deleted according to a documented policy (D-014).
 
 ## 5. Business rules and data interpretation
 

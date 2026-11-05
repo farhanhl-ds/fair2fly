@@ -26,7 +26,7 @@ If sources conflict, stop and report the conflict. Do not silently choose one. T
 
 ## Commands
 
-No application code exists yet. T-005 must add the exact install, development, test, lint, type-check, migration, and E2E commands here. Do not guess commands.
+No application code exists yet. T-001 must add the exact install, development, test, lint, type-check, migration, and E2E commands here. Do not guess commands.
 
 ## Core rules
 

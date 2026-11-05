@@ -30,7 +30,7 @@ issues being built at the same time.
 How you check, on this project:
 
 - Run the exact install, development, test, lint, type-check, and migration
-  commands defined in `AGENTS.md` (added by T-005). No application commands
+  commands defined in `AGENTS.md` (added by T-001). No application commands
   exist before that task lands; when they are missing, verify against the
   task's test plan and say so. Do not guess or substitute commands
 - For anything with a page, a form, or a redirect, click through it yourself

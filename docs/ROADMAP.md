@@ -4,17 +4,17 @@
 **Target:** 4–6 weeks.  
 **Task backlog:** GitHub Issues (D-026) once the repository is connected; [`TASKS.md`](TASKS.md) is the current seed.
 
-## Milestone 0 — Feasibility and product decisions (closed decisions: D-001, D-002, D-023)
+## Milestone 0 — Feasibility and product decisions (closed decisions: D-001, D-002, D-025)
 
 - [x] Compare flight API providers for Indonesian coverage, price/fare fields, quotas, terms, retention, and cost — D-001 accepted 2026-11-05.
 - [x] Confirm initial airport hubs — D-002 accepted 2026-11-05 (CGK, DPS, SUB, KNO, JOG, UPG, BDO).
-- [x] Record risks and provider limitations for the MVP — captured in D-001; live terms/coverage verification happens at T-009.
-- [ ] Confirm authentication, currency-rate, email, and deployment choices (D-008–D-011).
-- [ ] Validate development-agent model routing (D-021–D-022; the runtime model itself is resolved in D-023).
+- [x] Record risks and provider limitations for the MVP — captured in D-001; live terms/coverage verification happens at T-005.
+- [ ] Confirm authentication, currency-rate, email, and deployment choices (D-010–D-013).
+- [ ] Validate development-agent model routing (D-023–D-024; the runtime model itself is resolved in D-025).
 
-**Exit criteria:** One provider selected for MVP; permitted collection/storage behavior understood; initial airport list agreed; platform-service choices (D-008–D-011) and agent model routing (D-021/D-022) resolved before Week 1.
+**Exit criteria:** One provider selected for MVP; permitted collection/storage behavior understood; initial airport list agreed; platform-service choices (D-010–D-013) and agent model routing (D-023/D-024) resolved before Week 1.
 
-## Week 1 — Foundation (T-005–T-009)
+## Week 1 — Foundation (T-001–T-005)
 - Repository structure and development environment.
 - Docker Compose for application, PostgreSQL, and Redis.
 - FastAPI skeleton and Next.js skeleton.
@@ -23,7 +23,7 @@
 
 **Exit criteria:** A supported search can retrieve and normalize a provider offer in a development environment.
 
-## Week 2 — Collection and persistence (T-010–T-013)
+## Week 2 — Collection and persistence (T-006–T-009)
 - Persist normalized offers and immutable price observations.
 - Implement Celery worker and scheduled collection.
 - Add idempotency, retries, quota handling, and structured logs.
@@ -31,7 +31,7 @@
 
 **Exit criteria:** A tracking request can produce multiple timestamped observations without overwriting history.
 
-## Week 3 — Price intelligence (T-014–T-017)
+## Week 3 — Price intelligence (T-010–T-013)
 - Historical query services.
 - Statistical summaries and price charts.
 - Rule-based deal scoring with versioning.
@@ -40,7 +40,7 @@
 
 **Exit criteria:** A user can inspect historical observations and see an evidence-backed statistical assessment.
 
-## Week 4 — User-facing application (T-018–T-023)
+## Week 4 — User-facing application (T-014–T-019)
 - Public Explore homepage.
 - Search and flexible discovery flow within provider capabilities.
 - Deal and market insight pages.
@@ -49,7 +49,7 @@
 
 **Exit criteria:** A visitor can discover deals; a registered user can save and manage tracking requests.
 
-## Week 5 — Notifications and AI (T-024–T-027)
+## Week 5 — Notifications and AI (T-020–T-023)
 - Telegram alert delivery and cooldowns.
 - Email notifications.
 - AI assistant with approved tool calling.
@@ -58,7 +58,7 @@
 
 **Exit criteria:** The assistant can answer using backend data and a user can receive a meaningful alert.
 
-## Week 6 — Hardening and deployment (T-028–T-032)
+## Week 6 — Hardening and deployment (T-024–T-028)
 - Unit, integration, and end-to-end tests.
 - Provider failure and quota-exhaustion tests.
 - Security and access-control review.

@@ -183,7 +183,7 @@ A single tool-calling agent is sufficient initially. Multi-agent orchestration i
 - Display IDR by default and allow a user-selected display currency.
 - Store the exchange rate and conversion timestamp used for converted display values.
 
-**Decision:** D-001 accepted 2026-11-05: Google Flights data via SerpApi as the MVP fare source behind a replaceable adapter (NFR-001). Terms-derived constraints: collection budgeted per plan tier (D-004), provider attribution preserved, original amount and currency preserved, missing fare attributes stay `unknown` (BR-004). Quota facts and rationale: D-001 in [`DECISIONS.md`](DECISIONS.md); live coverage/terms spot-check occurs at T-009.
+**Decision:** D-001 accepted 2026-11-05: Google Flights data via SerpApi as the MVP fare source behind a replaceable adapter (NFR-001). Terms-derived constraints: collection budgeted per plan tier (D-004), provider attribution preserved, original amount and currency preserved, missing fare attributes stay `unknown` (BR-004). Quota facts and rationale: D-001 in [`DECISIONS.md`](DECISIONS.md); live coverage/terms spot-check occurs at T-005.
 
 ## 15. Booking boundary
 
@@ -251,4 +251,4 @@ Budget approach: prioritize free tiers and open-source infrastructure, with a mo
 
 Open product, provider, and platform decisions are tracked centrally in [`DECISIONS.md`](DECISIONS.md). Resolve each decision before implementing a dependent feature, and record the outcome there with rationale and consequences.
 
-Phase-0 outcomes (2026-11-05): D-001 and D-002 accepted, plus development-workflow decisions D-023 (agent runtime) and D-026 (GitHub Issues tracker). D-008–D-011, D-021, and D-022 remain open and must be resolved before T-005.
+Phase-0 outcomes (2026-11-05): D-001 and D-002 accepted, plus development-workflow decisions D-025 (agent runtime) and D-026 (GitHub Issues tracker). D-010–D-013, D-023, and D-024 remain open and must be resolved before T-001.
