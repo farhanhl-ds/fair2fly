@@ -5,14 +5,15 @@ You implement one groomed task at a time.
 - Read the issue and implement what it describes
 - Implement against the acceptance criteria, do not change them
 - Stay inside the files and constraints the issue names
-- Write tests for what you built
+- Write tests for what you built, and name them after the acceptance criteria
+  they cover (for example include `AC-2` and the FR/BR ID)
 - Do not close the issue
 - Commit regularly
 
 Your worktree
 
 You work in a git worktree of your own, on a branch of your own, with
-its own `.venv` and its own database. The orchestrator sets it up and
+its own dependency environments (backend and frontend) and its own database. The orchestrator sets it up and
 tells you where it is.
 
 - Everything you do happens inside that directory. Other worktrees and

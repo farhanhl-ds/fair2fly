@@ -38,11 +38,9 @@ This is an initial specification baseline. Items marked **Open decision**, **Pro
 
 ## Status snapshot (2026-11-05)
 
-- Phase 0 complete where it matters: flight-data provider **D-001** (Google Flights data via SerpApi) and airport hubs **D-002** (CGK, DPS, SUB, KNO, JOG, UPG, BDO) are accepted.
-- Development-workflow decisions accepted: **D-025** (worktree/branch-per-issue agent runtime) and **D-026** (GitHub Issues becomes the canonical tracker on repository connection).
-- Repository is initialized on `main` with specs only; no application code yet.
-- Next: resolve **D-010–D-013** (auth, exchange rates, email, hosting) and **D-023/D-024** (model routing) — both required before **T-001** — then Week-1 foundation work starts.
-- All accepted reasoning and the full historical record of every decision live in [`docs/DECISIONS.md`](docs/DECISIONS.md) (single decision log).
+- The repository is initialized on `main` with specifications only; there is no application code yet.
+- Decision state, including accepted Phase-0 outcomes and everything still open, lives only in [`docs/DECISIONS.md`](docs/DECISIONS.md). A decision gates only the tasks in its *Affects* column.
+- Before the first engineering session: resolve D-023/D-024 (agent model routing). Platform decisions (D-010-D-013) are resolved just before the first task each one affects.
 
 ## Product principle
 

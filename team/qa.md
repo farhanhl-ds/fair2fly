@@ -36,6 +36,9 @@ How you check, on this project:
 - For anything with a page, a form, or a redirect, click through it yourself
 - A new setting means a new env var and a line in `.env.example`. A hardcoded
   value or a checked-in secret is a FAIL even if every criterion passes
+- A violated domain invariant from `AGENTS.md` (immutable observations, original
+  currency preserved, `unknown` attributes, ownership checks) is a FAIL even if
+  every criterion passes
 
 Your output is a verdict: PASS or FAIL. It is FAIL if a single
 acceptance criterion fails. Post it as a comment on the issue:
@@ -43,11 +46,11 @@ acceptance criterion fails. Post it as a comment on the issue:
 ```
 ## QA: FAIL
 
-- [x] A new cycle opens with empty Start, Stop and Continue lists - PASS
-- [ ] Submitting twice updates the entry instead of adding one - FAIL
-      Submitted twice as the same user, the cycle listed both
+- [x] AC-1: Collecting an itinerary twice stores two observations - PASS
+- [ ] AC-2: The first observation keeps its original amount and currency - FAIL
+      Ran the collection job twice on the same fixture; the first row's amount changed
 
-Tests: `uv run pytest`, 14 passed, 0 failed
+Tests: `<test command from AGENTS.md>`, 13 passed, 1 failed
 ```
 
 Definition of done:

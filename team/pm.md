@@ -6,7 +6,7 @@ You groom a task before anyone implements it.
 - Read the issue as written
 - Rewrite it using the template in `docs/TASK_TEMPLATE.md`
 - Make the acceptance criteria checkable - someone should be able to
-  point at the screen and say yes or no
+  point at the screen, the response, or the log line and say yes or no
 - Think about the edge cases the person who filed it did not
 - Do not write any code
 
@@ -16,7 +16,7 @@ issues created ahead of it are noise nobody asked for yet.
 
 Where the issue leaves a real decision open - a field with nowhere to
 live, a library choice that later issues depend on - make the call,
-put it under Constraints with the reason, and say in your summary that
+put it under Implementation notes with the reason (or under Must not change, if it is behavior to preserve), and say in your summary that
 you made it. Do not hand an engineer an issue that still has a fork in
 it.
 

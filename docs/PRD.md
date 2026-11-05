@@ -1,6 +1,6 @@
 # Product Requirements Document (PRD)
 
-**Status:** Initial baseline; Phase-0 provider and hub decisions accepted (D-001, D-002), remaining decisions open in DECISIONS.md.  
+**Status:** Initial baseline. Decision state: [`DECISIONS.md`](DECISIONS.md).  
 **Last updated:** 2026-11-05  
 **Open decisions:** [`DECISIONS.md`](DECISIONS.md)  
 **Related:** [`SRS.md`](SRS.md), [`TECHNICAL_DESIGN.md`](TECHNICAL_DESIGN.md), [`ROADMAP.md`](ROADMAP.md)
@@ -51,7 +51,7 @@ The AI assistant is an interface to deterministic search and analytics services.
 - Multi-city journeys.
 - Global origins and destinations.
 
-**Decision:** D-002 accepted 2026-11-05 (see [`DECISIONS.md`](DECISIONS.md)). Data seeded from OurAirports; the list is seed-configurable, so expansion does not require a PRD change.
+**Decision:** see D-002 in [`DECISIONS.md`](DECISIONS.md). The list is seed-configurable, so expansion does not require a PRD change.
 
 ## 6. Core user experiences
 
@@ -183,7 +183,7 @@ A single tool-calling agent is sufficient initially. Multi-agent orchestration i
 - Display IDR by default and allow a user-selected display currency.
 - Store the exchange rate and conversion timestamp used for converted display values.
 
-**Decision:** D-001 accepted 2026-11-05: Google Flights data via SerpApi as the MVP fare source behind a replaceable adapter (NFR-001). Terms-derived constraints: collection budgeted per plan tier (D-004), provider attribution preserved, original amount and currency preserved, missing fare attributes stay `unknown` (BR-004). Quota facts and rationale: D-001 in [`DECISIONS.md`](DECISIONS.md); live coverage/terms spot-check occurs at T-005.
+**Decision:** the MVP fare source is recorded in D-001 ([`DECISIONS.md`](DECISIONS.md)) and sits behind a replaceable adapter (NFR-001). Constraints that hold regardless of provider: collection is budgeted per plan tier (D-004), provider attribution is preserved, original amount and currency are preserved, and missing fare attributes stay `unknown` (BR-004).
 
 ## 15. Booking boundary
 
@@ -249,6 +249,4 @@ Budget approach: prioritize free tiers and open-source infrastructure, with a mo
 
 ## 20. Open decisions before implementation
 
-Open product, provider, and platform decisions are tracked centrally in [`DECISIONS.md`](DECISIONS.md). Resolve each decision before implementing a dependent feature, and record the outcome there with rationale and consequences.
-
-Phase-0 outcomes (2026-11-05): D-001 and D-002 accepted, plus development-workflow decisions D-025 (agent runtime) and D-026 (GitHub Issues tracker). D-010–D-013, D-023, and D-024 remain open and must be resolved before T-001.
+Open product, provider, and platform decisions are tracked centrally in [`DECISIONS.md`](DECISIONS.md). A decision blocks only the tasks in its *Affects* column: resolve it before the first of those tasks starts, and record the outcome there with rationale and consequences.

@@ -1,18 +1,14 @@
 # Development Roadmap
 
-**Status:** Planning baseline; provider and hub selections accepted (D-001, D-002).  
+**Status:** Planning baseline.  
 **Target:** 4–6 weeks.  
 **Task backlog:** GitHub Issues (D-026) once the repository is connected; [`TASKS.md`](TASKS.md) is the current seed.
 
-## Milestone 0 — Feasibility and product decisions (closed decisions: D-001, D-002, D-025)
+## Milestone 0 — Feasibility and product decisions
 
-- [x] Compare flight API providers for Indonesian coverage, price/fare fields, quotas, terms, retention, and cost — D-001 accepted 2026-11-05.
-- [x] Confirm initial airport hubs — D-002 accepted 2026-11-05 (CGK, DPS, SUB, KNO, JOG, UPG, BDO).
-- [x] Record risks and provider limitations for the MVP — captured in D-001; live terms/coverage verification happens at T-005.
-- [ ] Confirm authentication, currency-rate, email, and deployment choices (D-010–D-013).
-- [ ] Validate development-agent model routing (D-023–D-024; the runtime model itself is resolved in D-025).
+Scope: select the MVP flight-data provider, confirm the initial airport hubs, record provider risks and limitations, and settle platform and agent-workflow choices. Status and outcomes live only in [`DECISIONS.md`](DECISIONS.md).
 
-**Exit criteria:** One provider selected for MVP; permitted collection/storage behavior understood; initial airport list agreed; platform-service choices (D-010–D-013) and agent model routing (D-023/D-024) resolved before Week 1.
+**Exit criteria:** One provider selected for the MVP; permitted collection and storage behavior understood; initial airport list agreed; agent model routing (D-023/D-024) resolved before engineering starts. Platform decisions (D-010-D-013) are resolved before the first task each one affects, per the gating rule in `DECISIONS.md`.
 
 ## Week 1 — Foundation (T-001–T-005)
 - Repository structure and development environment.

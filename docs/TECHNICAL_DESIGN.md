@@ -1,4 +1,4 @@
-# Technical Design (Initial, Provider-Neutral)
+# Technical Design (Initial Baseline)
 
 **Status:** Proposed implementation baseline; provider selected (D-001); schema not finalized.  
 **Last updated:** 2026-11-05  
@@ -144,7 +144,7 @@ Proposed adaptive policy:
 - Per-provider quota budgets, rate limits, retries, and backoff.
 - Pause or degrade collection when quotas are exhausted.
 
-The MVP source (D-001: SerpApi Google Flights) enforces monthly plan quotas (250 free searches/month at 50/hr; paid tiers scale), hourly throughput caps of roughly 20% of plan volume, and a ~1-hour response cache for repeated identical requests. Exact intervals and per-request budget accounting are tracked in D-004 in [`DECISIONS.md`](DECISIONS.md) against the active plan tier.
+Quota, throughput, and caching behavior of the MVP source are recorded in D-001 ([`DECISIONS.md`](DECISIONS.md)); collection intervals and per-request budget accounting are D-004. The scheduler reads these values from configuration for the active plan tier and must not hardcode them.
 
 ## 7. Analytics
 

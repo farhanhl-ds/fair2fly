@@ -2,7 +2,7 @@
 
 ## Project context
 
-This repository implements a Flight Price Intelligence Platform. Its differentiator is persistent, structured flight-price history and evidence-based analysis. The product AI assistant is a single tool-calling agent; development-time agent roles do not change that product scope.
+This repository implements a Flight Price Intelligence Platform. Its differentiator is persistent, structured flight-price history and evidence-based analysis.
 
 ## Source of truth
 
@@ -44,7 +44,7 @@ No application code exists yet. T-001 must add the exact install, development, t
 12. Respect provider terms, quotas, rate limits, caching, and data-retention rules.
 13. Do not claim a price is guaranteed bookable. Users must confirm it with the booking provider.
 14. Keep the product's MVP AI assistant single-agent. Development-time agent roles do not change product scope.
-15. Add tests for business logic, edge cases, and failure modes. Do not mark a task complete without running relevant checks and reporting results.
+15. Add tests for business logic, edge cases, and failure modes. Do not mark a task complete without running relevant checks and reporting results. Name tests after the acceptance criteria and requirement IDs they cover (for example `AC-2`, `FR-014`) so QA can trace evidence.
 16. Keep secrets out of source control, prompts, and logs.
 
 ## Engineering preferences
@@ -56,7 +56,7 @@ No application code exists yet. T-001 must add the exact install, development, t
 - Keep migrations versioned and reviewable.
 - Use structured logs with correlation/request IDs. Never log secrets or sensitive user data.
 - Avoid unnecessary dependencies and abstractions.
-- Do not introduce multi-agent orchestration or ML forecasting into the MVP unless the product owner explicitly changes scope.
+- Do not introduce ML forecasting into the MVP unless the product owner explicitly changes scope.
 
 ## Implementation workflow
 

@@ -2,7 +2,7 @@
 
 **Status:** Living document.  
 **Purpose:** Single source of truth for open and resolved product, provider, platform, API, and development-workflow decisions.  
-**Rule:** Resolve a decision before implementing work that depends on it. Record the date, owner, rationale, consequences, and affected requirements/tasks.
+**Rule:** Resolve a decision before implementing work that depends on it. **Gating rule:** a decision blocks only the tasks in its *Affects* column, never the whole backlog. Record the date, owner, rationale, consequences, and affected requirements/tasks.
 
 Status values: `open`, `proposed`, `accepted`, `superseded`.
 
@@ -26,7 +26,7 @@ Phase-0 provider and hub decisions are accepted (D-001, D-002, 2026-11-05); see 
 
 ### Platform and data
 
-*D-010–D-013 must be resolved before T-001 (repository setup).*
+*No platform decision gates T-001. Resolve each one before the first task in its Affects column starts. Planning order: D-013 before T-002, D-010 before T-017, D-011 before T-019, D-012 before T-021.*
 
 | ID | Decision | Status | Owner | Affects |
 |---|---|---|---|---|
@@ -104,7 +104,7 @@ Accepted decisions in ID order. Open work continues in the sections above.
 - **Decision:**
   - GitHub Issues is the canonical implementation tracker from tracker activation; until the repository is connected, `docs/TASKS.md` remains the working source of truth.
   - Mapping: one task (T-xxx) → one issue. Seeded issues carry lightweight bodies drawn from `TASKS.md` (goal, refs, deps, exit criteria, type label). `team/pm.md` grooms a body into a full packet from `docs/TASK_TEMPLATE.md` only when the task becomes Ready.
-  - Labels: phase (`phase-1`…`phase-6`), type (`decision`, `scaffold`, `backend`, `frontend`, `hardening`), status (`proposed`, `ready`, `in-progress`, `in-qa`, `blocked`); completion is the closed state. Docs never duplicate issue status.
+  - Labels: phase (`phase-1`…`phase-6`), type (`decision`, `scaffold`, `backend`, `frontend`, `hardening`), status (`proposed`, `ready`, `in-progress`, `in-qa`, `blocked`), scope (`post-mvp`, for work moved out of a groomed task); completion is the closed state. Docs never duplicate issue status.
   - `decision`-type tasks close upon an accepted decision entry in `docs/DECISIONS.md` (evidence = the decision record).
   - Phase-0 decision work never becomes issues; decisions close within `DECISIONS.md`, and issue seeding covers the full implementation backlog (T-001–T-028). IDs were renumbered once, pre-activation, at the product owner's direction (2026-11-05): old T-005–T-032 became T-001–T-028, and decision IDs were regrouped theme-contiguously (product D-001–D-009, platform D-010–D-022, workflow D-023–D-026). IDs are stable from tracker activation onward.
   - Cross-referencing: branches are named `issue-<n>`; PRs link issues; QA verdicts and completion evidence are issue comments.

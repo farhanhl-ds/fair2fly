@@ -51,6 +51,8 @@ List existing behavior, contracts, data, or invariants that this task must prese
 
 ## Test plan
 
+Name each test after the AC it covers (for example include `AC-1` in the test name).
+
 | AC | Test type | Command/check |
 |---|---|---|
 | AC-1 | Unit / integration / API / UI / E2E |  |

@@ -6,7 +6,7 @@
 
 ## 1. Purpose
 
-Define testable MVP system requirements for the Flight Price Intelligence Platform. Requirements are intentionally provider-neutral until a flight-data API is selected.
+Define testable MVP system requirements for the Flight Price Intelligence Platform. Requirements are provider-neutral by design: the MVP source (D-001) is isolated behind the adapter boundary (NFR-001), so these requirements do not depend on it.
 
 ## 2. Actors
 
@@ -85,6 +85,8 @@ Define testable MVP system requirements for the Flight Price Intelligence Platfo
 - NFR-012: Core user-facing flows shall meet the agreed accessibility target (D-020).
 - NFR-013: Personal data shall be minimized, access-controlled, and retained/deleted according to a documented policy (D-014).
 
+**Verifiability note:** NFR-011, NFR-012, and NFR-013 cannot be verified until D-021, D-020, and D-014 are resolved. A task that cites them is not Ready until then.
+
 ## 5. Business rules and data interpretation
 
 - BR-001: A price observation is an immutable record of a fare returned by a source at a particular time.
@@ -129,5 +131,6 @@ Tests must protect these invariants:
 - **End-to-end:** discovery → account → tracking → observations → analytics → notification → grounded assistant response.
 - **External services:** mock paid providers and notification gateways in normal CI; use synthetic fixtures; keep separately triggered sandbox/contract tests only where provider terms permit.
 - **Failure cases:** timeout, malformed response, authentication failure, quota exhaustion, transient provider error, duplicate delivery, stale data.
+- **Traceability:** tests carry the IDs of the requirements and acceptance criteria they verify (FR-, NFR-, BR-, AC-) in their names or markers, so QA can map evidence to criteria.
 
 Never call a paid flight provider in ordinary unit-test runs. Report skipped tests and failures honestly.

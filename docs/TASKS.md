@@ -13,32 +13,25 @@
 - QA independently verifies non-trivial tasks.
 - Record evidence on the issue (or in the completion report until tracker activation) when complete.
 - One task (T-xxx) maps to one GitHub issue. Seeded issue bodies are lightweight (goal, refs, deps, exit criteria, type label); [`TASK_TEMPLATE.md`](TASK_TEMPLATE.md) grooming happens only when the task becomes Ready.
-- Labels: phase (`phase-1`…`phase-6`), type (`decision`, `scaffold`, `backend`, `frontend`, `hardening`), status (`proposed`, `ready`, `in-progress`, `in-qa`, `blocked`). Completion is the closed state.
+- Labels: phase (`phase-1`…`phase-6`), type (`decision`, `scaffold`, `backend`, `frontend`, `hardening`), status (`proposed`, `ready`, `in-progress`, `in-qa`, `blocked`), scope (`post-mvp`, for work moved out of a groomed task). Completion is the closed state.
 - IDs are dense and sequential: tasks T-001–T-028 align with the roadmap weeks; decisions D-001–D-026 group by theme (product/provider, platform/data, workflow). Decision work lives in [`DECISIONS.md`](DECISIONS.md), not in the backlog. A `decision`-labeled issue is reserved for decisions the product owner later chooses to track explicitly.
 
 ## Phase 0 — Feasibility and decisions (closed)
 
-Phase 0 produced decisions only; decision work does not enter the backlog or the tracker (D-026). Outcomes, with rationale and evidence, are recorded in [`DECISIONS.md`](DECISIONS.md):
+Phase 0 produced decisions only; decision work does not enter the backlog or the tracker (D-026). Outcomes, rationale, and what remains open are recorded only in [`DECISIONS.md`](DECISIONS.md).
 
-- **D-001** (2026-11-05) — MVP fare source: Google Flights data via SerpApi, behind a replaceable adapter (NFR-001).
-- **D-002** (2026-11-05) — MVP hub set: CGK, DPS, SUB, KNO, JOG, UPG, BDO; OurAirports reference data.
-- **D-025** (2026-11-05) — worktree/branch-per-issue agent runtime (development workflow).
-
-Open decision gates before implementation starts:
-
-- **D-010–D-013** — authentication, exchange-rate source, email delivery, and hosting (required before T-001).
-- **D-023/D-024** — development-agent model routing and 9Router configuration (required before engineering sessions run).
+Gating rule: a decision blocks only the tasks in its *Affects* column. The one pre-implementation gate for every engineering session is D-023/D-024 (agent model routing).
 
 ## Phase 1 — Foundation (Week 1)
 
 - [ ] **T-001 — Initialize repository and local development environment**  
   Set up project structure, lint/format configuration, environment template, and developer commands.  
-  **Refs:** NFR-008, NFR-010. **Deps:** decision gates D-010–D-013 (see Phase 0).  
+  **Refs:** NFR-008, NFR-010. **Deps:** pre-implementation gate D-023/D-024 only.  
   **Exit:** Reproducible setup; exact commands added to `AGENTS.md`.
 
 - [ ] **T-002 — Create Docker Compose foundation**  
   Bring up Next.js, FastAPI, PostgreSQL, Redis, worker, and scheduler with health checks.  
-  **Refs:** NFR-010. **Deps:** T-001.  
+  **Refs:** NFR-010. **Deps:** T-001; D-013 resolved.  
   **Exit:** Services start locally with documented environment variables.
 
 - [ ] **T-003 — Define initial domain model and migrations**  
@@ -66,7 +59,8 @@ Open decision gates before implementation starts:
 - [ ] **T-007 — Implement tracking-request CRUD**  
   Support create, list, update, pause, and delete with ownership checks.  
   **Refs:** FR-010–FR-011, NFR-006. **Deps:** T-003.  
-  **Exit:** Authorization and validation tests pass.
+  **Identity seam:** real authentication arrives with T-017 (D-010). T-007 enforces ownership in the service layer against an injected current-user identity and is tested with a test-double identity; T-017 supplies the real implementation without changing service signatures.  
+  **Exit:** Authorization and validation tests pass, including that user A cannot read or modify user B's tracking requests (SRS §7).
 
 - [ ] **T-008 — Implement scheduled collection worker**  
   Add scheduling, quota budgets, retries, backoff, idempotency, and structured logs.  
@@ -119,7 +113,7 @@ Open decision gates before implementation starts:
 
 - [ ] **T-017 — Implement authentication and user preferences**  
   Add saved preferences, default display currency, and preferred origins.  
-  **Refs:** FR-008–FR-009, NFR-006. **Deps:** T-003, T-014.  
+  **Refs:** FR-008–FR-009, NFR-006. **Deps:** T-003, T-014; D-010 resolved.  
   **Exit:** Ownership checks and preference persistence tests pass.
 
 - [ ] **T-018 — Build tracking/watchlist workspace**  
@@ -129,7 +123,7 @@ Open decision gates before implementation starts:
 
 - [ ] **T-019 — Build price history and deal detail views**  
   Display comparable historical observations, statistics, and recommendation evidence.  
-  **Refs:** FR-019, FR-021–FR-023. **Deps:** T-013, T-017–T-018.  
+  **Refs:** FR-019, FR-021–FR-023. **Deps:** T-013, T-017–T-018; D-011 resolved.  
   **Exit:** Charts and detail views show window, sample size, freshness, and evidence.
 
 ## Phase 5 — Notifications and AI assistant (Week 5)
@@ -141,7 +135,7 @@ Open decision gates before implementation starts:
 
 - [ ] **T-021 — Implement email notifications**  
   Reuse notification event semantics and preference controls.  
-  **Refs:** FR-028, NFR-003. **Deps:** T-020.  
+  **Refs:** FR-028, NFR-003. **Deps:** T-020; D-012 resolved.  
   **Exit:** Email delivery uses the same deduplication and explanation contract.
 
 - [ ] **T-022 — Implement approved AI assistant tools**  

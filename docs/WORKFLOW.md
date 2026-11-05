@@ -22,7 +22,7 @@
 | QA | Independently verifies acceptance criteria and invariants | Task/spec, diff, test instructions | QA report |
 | Documentation | Updates affected docs after accepted changes | Task, diff, decisions | Docs report |
 
-Role prompts must not duplicate repository rules. They reference this file and `AGENTS.md`.
+Role prompts must not duplicate repository rules. They reference this file and `AGENTS.md`. Every role in the table has a prompt in `team/` (`orchestrator.md`, `pm.md`, `engineer.md`, `qa.md`, `documentation.md`); the human product owner is the only role without one.
 
 ## 3. Workflow graph
 
@@ -86,7 +86,7 @@ GitHub Issues carries task status; docs never duplicate it. Until tracker activa
 |---|---|---|---|---|---|
 | Orchestrator | Move one task to accepted | Select, delegate, route, update status | Task report plus QA report | Issue queue empty, budget reached, or human stop | Conflicting requirements, repeated failure, missing decision |
 | Engineer | Satisfy acceptance criteria | Edit code/docs, run tests/lint/type checks | AC-to-test mapping and command output | All AC pass and checks pass | Ambiguity, missing decision, one failed fix cycle, architecture change |
-| QA | Independently verify the task | Review, run checks, add focused regression tests | Criteria-by-criteria result and findings | Pass, or fail with reproducible evidence | Requirement ambiguity, security/data-integrity risk, scope conflict |
+| QA | Independently verify the task | Review, run checks, report missing regression tests as findings (QA changes no code) | Criteria-by-criteria result and findings | Pass, or fail with reproducible evidence | Requirement ambiguity, security/data-integrity risk, scope conflict |
 | Documentation | Keep docs consistent with accepted behavior | Edit only affected docs | Diff and source evidence | Docs updated and consistent | Contradiction or undocumented decision |
 
 Limits: maximum one automatic fix/QA cycle before human escalation; maximum two QA attempts per task. Do not retry indefinitely. Adjust limits only with evidence.
