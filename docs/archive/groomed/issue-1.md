@@ -23,7 +23,7 @@ Give the project a runnable, lintable, testable skeleton with one documented com
 - Database schema, migrations, migration command: #4 (T-004).
 - End-to-end test tooling and command: #25 (T-025).
 - Structured logging and metrics: #10 (T-010).
-- CI workflow (GitHub Actions running lint and tests): follow-up issue to be filed, label `post-mvp` (NFR-008 asks for automated tests, not for CI).
+- CI workflow (GitHub Actions running lint, type-check, and tests): #30 (T-030).
 - Any product feature, provider code, or domain model.
 
 ## Edge and failure cases
