@@ -10,7 +10,7 @@ Scope: select the MVP flight-data provider, confirm the initial airport hubs, re
 
 **Exit criteria:** One provider selected for the MVP; permitted collection and storage behavior understood; initial airport list agreed. Platform decisions (D-010-D-013) are resolved before the first task each one affects, per the gating rule in `DECISIONS.md`.
 
-## Week 1 — Foundation (T-001–T-006)
+## Milestone 1 — Foundation (T-001–T-006)
 - Repository structure and development environment.
 - Docker Compose for application, PostgreSQL, and Redis.
 - FastAPI skeleton and Next.js skeleton.
@@ -20,7 +20,7 @@ Scope: select the MVP flight-data provider, confirm the initial airport hubs, re
 
 **Exit criteria:** A supported search can retrieve and normalize a provider offer in a development environment.
 
-## Week 2 — Collection and persistence (T-007–T-010)
+## Milestone 2 — Collection and persistence (T-007–T-010)
 - Persist normalized offers and immutable price observations.
 - Implement Celery worker and scheduled collection.
 - Add idempotency, retries, quota handling, and structured logs.
@@ -28,7 +28,7 @@ Scope: select the MVP flight-data provider, confirm the initial airport hubs, re
 
 **Exit criteria:** A tracking request can produce multiple timestamped observations without overwriting history.
 
-## Week 3 — Price intelligence (T-011–T-014)
+## Milestone 3 — Price intelligence (T-011–T-014)
 - Historical query services.
 - Statistical summaries and price charts.
 - Rule-based deal scoring with versioning.
@@ -37,7 +37,7 @@ Scope: select the MVP flight-data provider, confirm the initial airport hubs, re
 
 **Exit criteria:** A user can inspect historical observations and see an evidence-backed statistical assessment.
 
-## Week 4 — User-facing application (T-015–T-020)
+## Milestone 4 — User-facing application (T-015–T-020)
 - Public Explore homepage.
 - Search and flexible discovery flow within provider capabilities.
 - Deal and market insight pages.
@@ -46,7 +46,7 @@ Scope: select the MVP flight-data provider, confirm the initial airport hubs, re
 
 **Exit criteria:** A visitor can discover deals; a registered user can save and manage tracking requests.
 
-## Week 5 — Notifications and AI (T-021–T-024)
+## Milestone 5 — Notifications and AI (T-021–T-024)
 - Telegram alert delivery and cooldowns.
 - Email notifications.
 - AI assistant with approved tool calling.
@@ -55,7 +55,7 @@ Scope: select the MVP flight-data provider, confirm the initial airport hubs, re
 
 **Exit criteria:** The assistant can answer using backend data and a user can receive a meaningful alert.
 
-## Week 6 — Hardening and deployment (T-025–T-029)
+## Milestone 6 — Hardening and deployment (T-025–T-029)
 - Unit, integration, and end-to-end tests.
 - Provider failure and quota-exhaustion tests.
 - Security and access-control review.

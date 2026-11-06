@@ -6,7 +6,7 @@
 
 ## 1. Purpose
 
-Define testable MVP system requirements for Fair2fly. Requirements are provider-neutral by design: the MVP source (D-001) is isolated behind the adapter boundary (NFR-001), so these requirements do not depend on it.
+Define testable MVP system requirements for fair2fly. Requirements are provider-neutral by design: the MVP source (D-001) is isolated behind the adapter boundary (NFR-001), so these requirements do not depend on it.
 
 ## 2. Actors
 

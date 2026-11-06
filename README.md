@@ -1,6 +1,6 @@
-# Flight Price Intelligence Platform
+# fair2fly
 
-A spec-driven project for discovering flight deals, collecting persistent flight-price observations, and helping travelers make evidence-based booking decisions.
+fair2fly is a flight price intelligence platform: a spec-driven project for discovering flight deals, collecting persistent flight-price observations, and helping travelers make evidence-based booking decisions.
 
 ## Start here
 
@@ -26,7 +26,7 @@ A spec-driven project for discovering flight deals, collecting persistent flight
 | `docs/PRD.md` | Product requirements, users, scope, risks, and success measures |
 | `docs/SRS.md` | Functional/non-functional requirements, business rules, and testing invariants |
 | `docs/TECHNICAL_DESIGN.md` | Architecture, components, data concepts, security, and deployment |
-| `docs/ROADMAP.md` | Milestones, weekly sequencing, exit criteria, and scope control |
+| `docs/ROADMAP.md` | Milestones, sequencing, exit criteria, and scope control |
 | `docs/archive/TASKS.md` | Archived seed backlog; GitHub Issues is the canonical tracker (D-026) |
 | `docs/TASK_TEMPLATE.md` | Standard task packet with acceptance criteria and evidence |
 | `docs/DECISIONS.md` | Single decision log for open and resolved choices |
@@ -39,7 +39,7 @@ This is an initial specification baseline. Items marked **Open decision**, **Pro
 ## Status snapshot (2026-11-05)
 
 - The repository is initialized on `main` with specifications only; there is no application code yet.
-- Decision state, including accepted Phase-0 outcomes and everything still open, lives only in [`docs/DECISIONS.md`](docs/DECISIONS.md). A decision gates only the tasks in its *Affects* column.
+- Decision state, including accepted Milestone 0 outcomes and everything still open, lives only in [`docs/DECISIONS.md`](docs/DECISIONS.md). A decision gates only the tasks in its *Affects* column.
 - Platform decisions (D-010-D-013) are resolved just before the first task each one affects. Agent model routing (D-023/D-024) is deferred and gates nothing.
 
 ## Product principle

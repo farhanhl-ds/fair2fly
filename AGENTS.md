@@ -2,7 +2,7 @@
 
 ## Project context
 
-This repository implements a Flight Price Intelligence Platform. Its differentiator is persistent, structured flight-price history and evidence-based analysis.
+This repository implements fair2fly, a flight price intelligence platform. Its differentiator is persistent, structured flight-price history and evidence-based analysis.
 
 ## Source of truth
 

@@ -24,7 +24,7 @@ Every decision appears in the tables below with its status. Accepted decisions (
 | D-006 | Exact deal-score formula, weights, evidence payload, and versioning policy | open | product owner | FR-020–FR-022, T-013, T-014 |
 | D-007 | Public data display, caching, provider attribution, and redistribution policy | open | product owner | FR-001, FR-006, NFR-002 |
 | D-008 | Exchange-rate snapshot strategy for historical display-currency comparisons | open | product owner | FR-034–FR-036, T-011, T-020 |
-| D-009 | MVP scope/timeline trade-off if the 4–6 week target is constrained | open | product owner | ROADMAP, all phases |
+| D-009 | MVP scope/timeline trade-off if the 4–6 week target is constrained | open | product owner | ROADMAP, all milestones |
 
 D-004, D-007, and D-015 are informed by the T-003 spike. Keep them open until its findings are recorded.
 
@@ -68,7 +68,7 @@ Accepted decisions in ID order, with full rationale and consequences. Status of 
 - **Status:** accepted
 - **Date:** 2026-11-05
 - **Owner:** product owner
-- **Context:** Phase-0 provider evaluation. Research (Nov 2026): Amadeus Self-Service was decommissioned on 2026-07-17 and is now Enterprise-only (negotiated contract, accreditation); Kiwi Tequila is invite-only; Skyscanner's official partnership is gated on large-MAU approval; Duffel is booking-oriented with commercial KYC activation; Travelpayouts exposes free cached/aggregated data with weak itinerary-level detail. The product's growth goal needs complete itinerary price data at MVP and at scale.
+- **Context:** Milestone 0 provider evaluation. Research (Nov 2026): Amadeus Self-Service was decommissioned on 2026-07-17 and is now Enterprise-only (negotiated contract, accreditation); Kiwi Tequila is invite-only; Skyscanner's official partnership is gated on large-MAU approval; Duffel is booking-oriented with commercial KYC activation; Travelpayouts exposes free cached/aggregated data with weak itinerary-level detail. The product's growth goal needs complete itinerary price data at MVP and at scale.
 - **Decision:** Use SerpApi's `google_flights` engine as the MVP fare source, behind the provider-neutral adapter (NFR-001), replaceable or supplement-able without changing domain services.
 - **Facts recorded (2026-11):** Free plan 250 searches/month at 50/hr; Starter $25/mo 1,000/mo; Developer $75/mo 5,000/mo; Production $150/mo 15,000/mo including U.S. Legal Shield; month-to-month. Only successful searches bill, and duplicate requests within a ~1-hour window are served from cache without charge. SerpApi deletes its copy of search data after 31 days, so customer-side retention is the intended model for this product's observations.
 - **Consequences:**
@@ -83,7 +83,7 @@ Accepted decisions in ID order, with full rationale and consequences. Status of 
 - **Status:** accepted
 - **Date:** 2026-11-05
 - **Owner:** product owner
-- **Context:** Phase 0 required a starter, demand-based set of Indonesian departure hubs that stays configurable and expandable.
+- **Context:** Milestone 0 required a starter, demand-based set of Indonesian departure hubs that stays configurable and expandable.
 - **Decision:** MVP hub set: CGK, DPS, SUB, KNO, JOG, UPG, BDO. Airport reference data is seeded from the OurAirports dataset (community-maintained, public domain). The list lives in seed/configuration data, so expansion does not require a PRD change.
 - **Consequences:**
   - Yogyakarta commercial traffic now largely operates from YIA (Yogyakarta International, Kulon Progo); the seed step maps the Yogyakarta hub to YIA and retains JOG as a legacy alias.
@@ -110,9 +110,9 @@ Accepted decisions in ID order, with full rationale and consequences. Status of 
 - **Decision:**
   - GitHub Issues is the canonical implementation tracker. The initial seed backlog is archived at `docs/archive/TASKS.md` and is not maintained.
   - Mapping: one task (T-xxx) → one issue. Seeded issues carry lightweight bodies drawn from the archived seed backlog (`docs/archive/TASKS.md`) (goal, refs, deps, exit criteria, type label). `team/pm.md` grooms a body into a full packet from `docs/TASK_TEMPLATE.md` only when the task becomes Ready.
-  - Labels: phase (`phase-1`…`phase-6`), type (`decision`, `scaffold`, `spike`, `backend`, `frontend`, `hardening`), status (`proposed`, `ready`, `in-progress`, `in-qa`, `blocked`), scope (`post-mvp`, for work moved out of a groomed task); completion is the closed state. Docs never duplicate issue status.
+  - Milestone: each task is assigned to the GitHub milestone for its ROADMAP section (Milestone 1 to 6). Labels: type (`decision`, `scaffold`, `spike`, `backend`, `frontend`, `hardening`), status (`proposed`, `ready`, `in-progress`, `in-qa`, `blocked`), scope (`post-mvp`, for work moved out of a groomed task); completion is the closed state. Docs never duplicate issue status.
   - `decision`-type tasks close upon an accepted decision entry in `docs/DECISIONS.md` (evidence = the decision record).
-  - Phase-0 decision work never becomes issues; decisions close within `DECISIONS.md`, and issue seeding covers the full implementation backlog (T-001–T-029). IDs are stable from tracker activation onward.
+  - Milestone 0 decision work never becomes issues; decisions close within `DECISIONS.md`, and issue seeding covers the full implementation backlog (T-001–T-029). IDs are stable from tracker activation onward.
   - Cross-referencing: branches are named `issue-<n>`; PRs link issues; QA verdicts and completion evidence are issue comments.
 - **Consequences:** `AGENTS.md`, `README.md`, `ROADMAP.md`, and `WORKFLOW.md` point to the tracker instead of a backlog file. Activation steps: authenticate `gh`, create the remote repository, create the labels, and seed one issue per task in T-xxx order so issue numbers match task numbers.
 - **Affects:** docs/archive/TASKS.md, WORKFLOW.md, AGENTS.md, README.md, ROADMAP.md, `team/*`.
