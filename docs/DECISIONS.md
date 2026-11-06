@@ -97,8 +97,8 @@ Accepted decisions in ID order, with full rationale and consequences. Status of 
 - **Date:** 2026-11-05
 - **Owner:** product owner + engineer
 - **Context:** D-025 asked for the development-agent runtime format. The `team/` role prompts already assume Git worktrees, per-issue branches, and QA verdicts posted on issues.
-- **Decision:** Adopt the worktree/branch-per-issue orchestration model: the orchestrator provisions a dedicated worktree, branch `issue-<n>`, and environment/database per engineer/QA session; engineers implement, commit, and push only their own branch; they never merge, rebase main, or touch another branch (the orchestrator rebases; no force-pushes); QA verifies a single dedicated worktree and posts PASS/FAIL verdicts with evidence as issue comments; destructive commands require explicit human approval.
-- **Consequences:** `WORKFLOW.md` §10 records the model; `team/pm.md` and `team/qa.md` are aligned in this documentation pass (template path, project-appropriate checks). Model routing specifics remain D-023/D-024.
+- **Decision:** Adopt the worktree/branch-per-issue orchestration model: the orchestrator creates a dedicated worktree, branch `issue-<n>`, and environment/database per task and runs each role in a separate session with fresh context; engineers commit and push only their own branch; QA verifies a detached worktree at the pushed commit and posts PASS/FAIL verdicts with evidence as issue comments; nobody rebases, merges, or force-pushes, and destructive commands require explicit human approval; the orchestrator opens the pull request (`Closes #n`) and the product owner merges it as final acceptance. Role prompts stay tool-agnostic in `team/`; tool-specific wrappers only point to them.
+- **Consequences:** `WORKFLOW.md` §10 records the model and the permissions per role; `team/pm.md` and `team/qa.md` are aligned in this documentation pass (template path, project-appropriate checks). Model routing specifics remain D-023/D-024.
 - **Affects:** WORKFLOW.md §10, `team/*` role prompts, D-023, D-024.
 
 ### D-026 — GitHub Issues as the canonical implementation tracker

@@ -10,7 +10,8 @@ You check finished work against the issue that specified it.
 
 Where you check
 
-You verify one branch, in the worktree the orchestrator points you at.
+You verify one branch, in the detached worktree at its pushed commit that the
+orchestrator points you at.
 That worktree has its own database, so the server you start and the
 suite you run are yours alone and cannot be disturbed by the other
 issues being built at the same time.

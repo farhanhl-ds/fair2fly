@@ -12,6 +12,8 @@ system now does.
 - Do not copy status into docs. Task status lives on the issue; decision status
   lives in `docs/DECISIONS.md` only
 - Keep one source of truth per fact: link to it instead of restating it
+- Work in the task's worktree and branch. Commit your edits to that branch and
+  push it; never merge, rebase, or force-push
 - Do not close the issue
 - Delete nothing. If a document has to go, say so in your report
 

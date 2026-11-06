@@ -77,10 +77,12 @@ GitHub Issues carries task status; docs never duplicate it.
 |---|---|---|
 | Proposed | `proposed` | Orchestrator (issue seeded) |
 | Ready | `ready` | PM (packet complete, DoR satisfied) |
-| In progress | `in-progress` | Engineer (branch `issue-<n>` exists) |
+| In progress | `in-progress` | Orchestrator (branch `issue-<n>` created; set again when a QA defect goes back to the engineer) |
 | In QA | `in-qa` | Engineer (implementation report comment posted) |
 | Blocked | `blocked` | any role (missing decision or dependency) |
-| Done | closed | human acceptance after QA PASS and docs update |
+| Done | closed | product owner merges the PR (`Closes #n`) after QA PASS and the docs update |
+
+After QA PASS the orchestrator removes `in-qa` and opens the PR. An open PR linked to the issue means it is awaiting acceptance; there is no separate label for that.
 
 ## 5. Loop contracts
 
@@ -105,6 +107,8 @@ Limits: maximum one automatic fix/QA cycle before human escalation; maximum two 
 | QA finds requirement ambiguity | Groom | PM |
 | QA passes | Documentation | Documentation |
 | Docs updated but AC evidence is incomplete | Converge/groom | Orchestrator/PM |
+| Docs updated and every AC evidenced | Open PR with `Closes #n` | Orchestrator, then the product owner merges |
+| Branch conflicts with `main` | Mark `blocked` and comment | Product owner decides |
 | Budget or retry limit exhausted | Escalate | Human |
 | Unrelated defect found | New issue or blocker | Orchestrator |
 
@@ -118,7 +122,7 @@ Require human approval for:
 - Data-model changes affecting historical comparability or immutability.
 - Architecture changes with broad impact.
 - Destructive or irreversible actions.
-- Final task acceptance.
+- Final task acceptance (merging the PR).
 
 Routine low-risk tasks may proceed under pre-approved backlog rules.
 
@@ -149,6 +153,21 @@ A task is **Done** when it satisfies the canonical Definition of Done in `AGENTS
 
 ## 10. Subagent runtime
 
-Adopted model (D-025): worktree/branch-per-issue. The orchestrator provisions one git worktree, branch `issue-<n>`, and environment/database per engineer/QA session. Engineers implement, commit, and push only their own branch; they never merge, rebase main, or touch another branch (the orchestrator rebases; never force-push). QA verifies a single dedicated worktree and posts PASS/FAIL verdicts with evidence as issue comments. Destructive commands stop the run until a human approves.
+Adopted model (D-025): worktree/branch-per-issue. The orchestrator creates one git worktree and branch `issue-<n>` per task, with its own dependency environments and database, and runs each role as a separate session or subagent with fresh context. Engineers commit and push only their own branch. QA verifies a detached worktree at the pushed commit and posts PASS/FAIL verdicts with evidence as issue comments. Nobody rebases, merges, force-pushes, or deletes: on a conflict with `main` the role comments on the issue, the issue is marked `blocked`, and the product owner decides. After QA PASS and the docs update the orchestrator opens the PR (`Closes #n`); the product owner merges it, which is final acceptance and closes the issue. Destructive commands stop the run until a human approves.
 
-Role prompts currently live in `team/`. If using opencode subagents directly, mirror them under `.opencode/agent/<name>.md` with frontmatter and permissions, referencing this workflow and `AGENTS.md` — never a second copy of role instructions.
+### Role prompts and tools
+
+Role prompts live only in `team/` and are tool-agnostic. To run a role in a specific tool (opencode, Claude Code, or another), add a thin wrapper in that tool's agent directory. Its body only tells the agent to read `team/<role>.md` and `AGENTS.md` first; its frontmatter holds tool-specific settings (description, mode, model, permissions). Never copy role instructions into a wrapper. Record the tool and its version here once one is chosen.
+
+### Permissions per role
+
+Mirror these in any tool's configuration, so the limits are enforced by the tool and not only requested in prose.
+
+| Role | May | Must not |
+|---|---|---|
+| Orchestrator | Create worktrees and branches, start roles, change labels, comment, open PRs | Edit code, specs, or issue bodies; merge, rebase, force-push, close issues, delete anything |
+| PM | Edit issue bodies, create follow-up issues, set `ready` or `blocked`, comment | Write or run code |
+| Engineer | Edit and run code in its worktree, commit, push its own branch, comment, set `in-qa` or `blocked` | Edit the issue body; merge, rebase, force-push, delete, touch other branches |
+| QA | Read the repo, run checks, break something temporarily to prove a test catches it, comment verdicts, set `blocked` | Commit or push; leave any file changed; delete anything |
+| Documentation | Edit docs in the task's worktree, commit and push the task branch, comment | Change code, scope, requirements, or acceptance criteria; merge, rebase, force-push |
+| Product owner | Everything above; merge PRs, resolve decisions, remove worktrees and branches | |
