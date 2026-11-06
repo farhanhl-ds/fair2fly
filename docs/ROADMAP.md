@@ -10,13 +10,14 @@ Scope: select the MVP flight-data provider, confirm the initial airport hubs, re
 
 **Exit criteria:** One provider selected for the MVP; permitted collection and storage behavior understood; initial airport list agreed. Platform decisions (D-010-D-013) are resolved before the first task each one affects, per the gating rule in `DECISIONS.md`.
 
-## Milestone 1 — Foundation (T-001–T-006)
+## Milestone 1 — Foundation (T-001–T-006, T-030)
 - Repository structure and development environment.
 - Docker Compose for application, PostgreSQL, and Redis.
 - FastAPI skeleton and Next.js skeleton.
 - Time-boxed provider spike (T-003): quota cost, offer-ID stability, coverage, and terms.
 - Initial domain model and migrations, designed after the spike findings.
 - Provider adapter interface and one provider integration.
+- CI workflow running lint, type-check, and tests on pull requests (T-030).
 
 **Exit criteria:** A supported search can retrieve and normalize a provider offer in a development environment.
 

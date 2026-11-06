@@ -8,7 +8,8 @@ You implement one groomed task at a time.
 - Write tests for what you built, and name them after the acceptance criteria
   they cover (for example include `AC-2` and the FR/BR ID)
 - Do not close the issue
-- Commit regularly
+- Commit in small steps, and only when the checks that apply to the change
+  pass. Never commit a failing suite
 
 Your worktree
 

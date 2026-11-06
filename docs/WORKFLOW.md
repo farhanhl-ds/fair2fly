@@ -171,3 +171,15 @@ Mirror these in any tool's configuration, so the limits are enforced by the tool
 | QA | Read the repo, run checks, break something temporarily to prove a test catches it, comment verdicts, set `blocked` | Commit or push; leave any file changed; delete anything |
 | Documentation | Edit docs in the task's worktree, commit and push the task branch, comment | Change code, scope, requirements, or acceptance criteria; merge, rebase, force-push |
 | Product owner | Everything above; merge PRs, resolve decisions, remove worktrees and branches | |
+
+### Isolation per worktree
+
+Everything stateful is isolated per worktree: database name, cache or queue namespace (for example the Redis database or a key prefix), and ports. A variable exported in the shell must not silently shadow the worktree's own `.env`. Verify the isolation with one command before an agent starts, not after it reports a mysterious failure. One agent works in a worktree at a time, and one test suite runs at a time inside it, because two runs share one test database and drop it under each other. The task that introduces the database (T-002) defines the per-worktree mechanism and records its exact commands in `AGENTS.md`.
+
+### Before merging
+
+QA's verdict applies to the pushed commit. If `main` moved after QA PASS, re-run the checks on the merged result before merging. Once CI exists, require it on the pull request.
+
+### Parallel waves (not in use)
+
+The orchestrator runs one task at a time. If the product owner enables parallel work, a task may enter a wave only when every issue it depends on is closed and merged, no other task in the wave changes the same schema or touches the same shared files (settings, routing, `AGENTS.md`, `.env.example`, base templates), and the orchestrator has read its Implementation notes. A wave is only as large as the backlog's independent work; do not pad it to a number.

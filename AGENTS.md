@@ -15,7 +15,7 @@ This repository implements fair2fly, a flight price intelligence platform. Its d
 - Development workflow: `docs/WORKFLOW.md`
 - API contracts: generated OpenAPI and `docs/API.md` once implemented; until then, `docs/TECHNICAL_DESIGN.md` §9
 
-If sources conflict, stop and report the conflict. Do not silently choose one. The product owner approves scope changes and unresolved product decisions.
+If sources conflict, stop and report the conflict. Do not silently choose one. The product owner approves scope changes and unresolved product decisions. Do not reopen an accepted decision in code or in an issue; change it in `docs/DECISIONS.md` first, with the product owner's approval.
 
 ## Required context
 
@@ -57,6 +57,13 @@ No application code exists yet. T-001 must add the exact install, development, t
 - Use structured logs with correlation/request IDs. Never log secrets or sensitive user data.
 - Avoid unnecessary dependencies and abstractions.
 - Do not introduce ML forecasting into the MVP unless the product owner explicitly changes scope.
+
+## Running commands
+
+- Wait for slow commands (test suites, builds, a container coming back) inside the command: run it in the foreground, or poll in a loop that ends. Nothing wakes an agent that has stopped, so "I will report when it finishes" is where the work ends. If it does not finish within a ceiling you state, report that as a finding.
+- Stop only processes you started, by the job id your tool gave you. Never use broad patterns such as `pkill -f pytest`; they kill other agents' runs and leave an aborted suite that looks like a broken branch.
+- After restoring a file you changed on purpose, `git status` and `git diff HEAD` must both be empty. `git checkout <commit> -- <path>` stages what it writes, so a later `git checkout -- <path>` can silently leave the old file in place.
+- A run that fails in a strange, scattered way is repeated once, alone and clean, before it is believed.
 
 ## Implementation workflow
 
