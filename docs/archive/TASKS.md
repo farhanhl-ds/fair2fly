@@ -12,16 +12,16 @@
 - QA independently verifies non-trivial tasks.
 - Record evidence on the issue (or in the completion report until tracker activation) when complete.
 - One task (T-xxx) maps to one GitHub issue. Seeded issue bodies are lightweight (goal, refs, deps, exit criteria, type label); [`TASK_TEMPLATE.md`](../TASK_TEMPLATE.md) grooming happens only when the task becomes Ready.
-- Labels: phase (`phase-1`…`phase-6`), type (`decision`, `scaffold`, `spike`, `backend`, `frontend`, `hardening`), status (`proposed`, `ready`, `in-progress`, `in-qa`, `blocked`), scope (`post-mvp`, for work moved out of a groomed task). Completion is the closed state.
-- IDs are dense and sequential: tasks T-001–T-029 align with the roadmap weeks; decisions D-001–D-026 group by theme (product/provider, platform/data, workflow). Decision work lives in [`DECISIONS.md`](../DECISIONS.md), not in the backlog. A `decision`-labeled issue is reserved for decisions the product owner later chooses to track explicitly.
+- Milestone: each task is assigned to the GitHub milestone for its roadmap section (Milestone 1 to 6). Labels: type (`decision`, `scaffold`, `spike`, `backend`, `frontend`, `hardening`), status (`proposed`, `ready`, `in-progress`, `in-qa`, `blocked`), scope (`post-mvp`, for work moved out of a groomed task). Completion is the closed state.
+- IDs are dense and sequential: tasks T-001–T-029 align with the roadmap milestones; decisions D-001–D-026 group by theme (product/provider, platform/data, workflow). Decision work lives in [`DECISIONS.md`](../DECISIONS.md), not in the backlog. A `decision`-labeled issue is reserved for decisions the product owner later chooses to track explicitly.
 
-## Phase 0 — Feasibility and decisions (closed)
+## Milestone 0 — Feasibility and decisions (closed)
 
-Phase 0 produced decisions only; decision work does not enter the backlog or the tracker (D-026). Outcomes, rationale, and what remains open are recorded only in [`DECISIONS.md`](../DECISIONS.md).
+Milestone 0 produced decisions only; decision work does not enter the backlog or the tracker (D-026). Outcomes, rationale, and what remains open are recorded only in [`DECISIONS.md`](../DECISIONS.md).
 
 Gating rule: a decision blocks only the tasks in its *Affects* column. D-023/D-024 (agent model routing) are deferred and gate nothing.
 
-## Phase 1 — Foundation (Week 1)
+## Milestone 1 — Foundation
 
 - [ ] **T-001 — Initialize repository and local development environment**  
   Set up project structure, lint/format configuration, environment template, and developer commands.  
@@ -53,7 +53,7 @@ Gating rule: a decision blocks only the tasks in its *Affects* column. D-023/D-0
   **Refs:** FR-006, FR-017, NFR-001. **Deps:** T-005.  
   **Exit:** Normalized offer available in development with sanitized fixture tests.
 
-## Phase 2 — Collection and persistence (Week 2)
+## Milestone 2 — Collection and persistence
 
 - [ ] **T-007 — Persist normalized offers and immutable observations**  
   Ensure repeated collection appends timestamped observations and preserves original fare/currency.  
@@ -76,7 +76,7 @@ Gating rule: a decision blocks only the tasks in its *Affects* column. D-023/D-0
   **Refs:** NFR-007. **Deps:** T-009.  
   **Exit:** Metrics/logs available for provider and worker health.
 
-## Phase 3 — Price intelligence (Week 3)
+## Milestone 3 — Price intelligence
 
 - [ ] **T-011 — Implement historical query services**  
   Query observations by route and itinerary with explicit windows and comparability constraints.  
@@ -98,7 +98,7 @@ Gating rule: a decision blocks only the tasks in its *Affects* column. D-023/D-0
   **Refs:** FR-021–FR-023, BR-005–BR-006. **Deps:** T-013.  
   **Exit:** Every recommendation includes supporting evidence and uncertainty.
 
-## Phase 4 — User-facing application (Week 4)
+## Milestone 4 — User-facing application
 
 - [ ] **T-015 — Build public Explore homepage**  
   Show public deals/insights and make search discoverable.  
@@ -130,7 +130,7 @@ Gating rule: a decision blocks only the tasks in its *Affects* column. D-023/D-0
   **Refs:** FR-019, FR-021–FR-023. **Deps:** T-014, T-018–T-019; D-011 resolved.  
   **Exit:** Charts and detail views show window, sample size, freshness, and evidence.
 
-## Phase 5 — Notifications and AI assistant (Week 5)
+## Milestone 5 — Notifications and AI
 
 - [ ] **T-021 — Implement Telegram notifications**  
   Support threshold and intelligence triggers, cooldown, deduplication, and trigger explanation.  
@@ -152,7 +152,7 @@ Gating rule: a decision blocks only the tasks in its *Affects* column. D-023/D-0
   **Refs:** FR-030–FR-033. **Deps:** T-023.  
   **Exit:** Every factual fare/statistics claim is traceable to a tool result.
 
-## Phase 6 — Hardening and release (Week 6)
+## Milestone 6 — Hardening and deployment
 
 - [ ] **T-025 — Add end-to-end user journey tests**  
   Cover discovery → account → tracking → observation → analytics → notification → assistant.  

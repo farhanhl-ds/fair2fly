@@ -105,7 +105,7 @@ Flexible destination monitoring may consume significantly more provider requests
 - Transparent, rule-based deal score.
 - Data coverage and confidence indicators.
 
-### Later phases
+### Post-MVP
 - Booking-window analysis.
 - Seasonal analysis.
 - Price anomaly detection enhancements.
