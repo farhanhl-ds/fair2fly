@@ -64,6 +64,10 @@ No application code exists yet. T-001 must add the exact install, development, t
 - Stop only processes you started, by the job id your tool gave you. Never use broad patterns such as `pkill -f pytest`; they kill other agents' runs and leave an aborted suite that looks like a broken branch.
 - After restoring a file you changed on purpose, `git status` and `git diff HEAD` must both be empty. `git checkout <commit> -- <path>` stages what it writes, so a later `git checkout -- <path>` can silently leave the old file in place.
 - A run that fails in a strange, scattered way is repeated once, alone and clean, before it is believed.
+- Work only inside the worktree path you were given. Reading `main` is fine; writing to it or to another worktree is not.
+- Before starting a test run, confirm no run is already alive in your worktree (`pgrep -af pytest`). Two suites in one worktree share one test database and drop it under each other.
+- A shell variable such as `DATABASE_URL` overrides the worktree's `.env`. Run commands with the worktree's own database named explicitly, and never assume the shell's value is yours. Isolation details are in `docs/WORKFLOW.md` section 10.
+- Never delete anything: not files, worktrees, branches, or databases. A command that destroys something stops the run until a human approves it. Restore with `git checkout -- <path>`, and put scratch files outside the repository.
 
 ## Implementation workflow
 

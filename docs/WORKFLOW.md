@@ -157,7 +157,11 @@ Adopted model (D-025): worktree/branch-per-issue. The orchestrator creates one g
 
 ### Role prompts and tools
 
-Role prompts live only in `team/` and are tool-agnostic. To run a role in a specific tool (opencode, Claude Code, or another), add a thin wrapper in that tool's agent directory. Its body only tells the agent to read `team/<role>.md` and `AGENTS.md` first; its frontmatter holds tool-specific settings (description, mode, model, permissions). Never copy role instructions into a wrapper. Record the tool and its version here once one is chosen.
+Role prompts live only in `team/` and are tool-agnostic. To run a role in a specific tool (opencode, Claude Code, or another), add a thin wrapper in that tool's agent directory. Its body only tells the agent to read `team/<role>.md` and `AGENTS.md` first; its frontmatter holds tool-specific settings (description, mode, model, permissions). Never copy role instructions into a wrapper.
+
+**Tool in use: opencode** (record the exact version here once installed: `opencode --version`). Wrappers live in `.opencode/agent/<role>.md` and the shared settings in `opencode.json`. The orchestrator is the only `primary` agent and is the default: the person talks to it, and it launches `pm`, `engineer`, `qa`, and `documentation` as `subagent`s through the task tool. The orchestrator's `task` permission lists exactly those four. The `permission` blocks in the wrappers implement the table below; if they disagree with it, the table wins and the wrapper is a defect. Verify the wrapper syntax against the installed version before the first run, and treat a permission that does not block what it claims as a finding.
+
+Known limits of tool-enforced permissions: `gh issue edit` cannot be restricted to labels only, so "engineer and QA never edit the issue body" is enforced by the `--add-label` and `--remove-label` patterns plus the role prompt. QA needs edit permission to break something on purpose, so "leave no file changed" is verified by `git status` and `git diff HEAD` being empty, not by the tool.
 
 ### Permissions per role
 
@@ -174,7 +178,14 @@ Mirror these in any tool's configuration, so the limits are enforced by the tool
 
 ### Isolation per worktree
 
-Everything stateful is isolated per worktree: database name, cache or queue namespace (for example the Redis database or a key prefix), and ports. A variable exported in the shell must not silently shadow the worktree's own `.env`. Verify the isolation with one command before an agent starts, not after it reports a mysterious failure. One agent works in a worktree at a time, and one test suite runs at a time inside it, because two runs share one test database and drop it under each other. The task that introduces the database (T-002) defines the per-worktree mechanism and records its exact commands in `AGENTS.md`.
+Everything stateful is isolated per worktree: database name, cache or queue namespace (for example the Redis database or a key prefix), and ports. Worktrees live in `../wt/<n>`, branch `issue-<n>`, created from `main`.
+
+- **Shell variables shadow `.env`.** A real environment variable beats the `.env` loader. If the terminal that launched the session exports `DATABASE_URL` (or a Redis URL or a port), it silently puts every worktree back on one database. Defend twice: run commands with the worktree's database named explicitly, and have the worktree's environment pin its own values before the application starts (the reference project does this with an untracked `sitecustomize.py` in the worktree's `.venv`). The pin must stand down inside a container, where Compose sets the variables on purpose.
+- **Verify before an agent starts.** One command prints the worktree's own database name, Redis namespace, and ports. The orchestrator runs it and does not start a role until the output names this worktree. A mysterious failure is not where isolation problems should first show up.
+- **One agent per worktree at a time, one suite at a time inside it.** Two runs share one test database and drop it under each other, and the failures look like a real regression. Before starting a run, confirm none is alive in that worktree (`pgrep -af pytest`). A run that fails in a strange, scattered way is repeated once, alone and clean, before it is believed. An engineer commits and pushes and is finished before QA is pointed at the same worktree.
+- **A role stays inside its own worktree.** The orchestrator gives each role its worktree path. Reading `main` is fine; writing to it or to another worktree is not. A subagent starts in the main checkout's directory, so the path is part of its instructions, not something it can discover.
+- **Nothing is dropped.** Databases are never dropped or recreated under the same name: if a name is taken, create a fresh one. Worktrees, branches, and databases stay in place after an issue closes; the product owner removes them.
+- **The mechanism is a task deliverable.** T-002 delivers `scripts/new-worktree.sh <n>` (creates the worktree and branch, installs dependencies, copies `.env` and points it at the worktree's own database, Redis namespace, and ports) and `scripts/check-worktree.sh <n>` (the verification command above), and records both in `AGENTS.md`. The orchestrator is allowed to run exactly these two scripts plus `git worktree add`. Until T-002 exists, the orchestrator creates the worktree and stops, since no isolation mechanism exists yet.
 
 ### Before merging
 

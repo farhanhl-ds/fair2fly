@@ -17,9 +17,13 @@ Running a task
 
 1. Create a worktree for the engineer: a sibling directory of the main
    checkout, branch `issue-<n>` from `main`, with its own dependency
-   environments and database. Set the label `in-progress`
+   environments and database, using `scripts/new-worktree.sh <n>` once it
+   exists (`docs/WORKFLOW.md` section 10). Run `scripts/check-worktree.sh <n>`
+   and start no role until its output names this worktree's own database and
+   ports. Set the label `in-progress`
 2. Start the engineer with fresh context. Give it only its role prompt
-   (`team/engineer.md`), the issue number, and the worktree path
+   (`team/engineer.md`), the issue number, and the worktree path, and tell it
+   to work only inside that path
 3. When the engineer has posted its Implementation report and set `in-qa`,
    start QA with fresh context in a separate, detached worktree at the pushed
    commit (`git worktree add --detach`). Give it only `team/qa.md`, the issue
