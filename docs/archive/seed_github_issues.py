@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-"""One-time seeding of GitHub labels and issues from docs/archive/TASKS.md.
+"""One-time seeding of GitHub labels, milestones, and issues from docs/archive/TASKS.md.
 
 Run from the root of the cloned repository, with `gh` authenticated and the
 remote repository already created (empty: no issues, no pull requests).
 
     python3 seed_github_issues.py            # dry run, prints what it would do
-    python3 seed_github_issues.py --apply    # creates labels and issues
+    python3 seed_github_issues.py --apply    # creates labels, milestones, issues
     python3 seed_github_issues.py --apply --repo OWNER/NAME
 
-Issues are created in T-xxx order so issue number N equals task T-00N. The
+Milestones are read from the "## Milestone N — Name" headings of TASKS.md, so the
+tracker follows the roadmap. Each task goes to the milestone of the section it sits
+in. Issues are created in T-xxx order so issue number N equals task T-0NN. The
 script stops if a number does not match.
 """
 import argparse
@@ -20,13 +22,8 @@ import sys
 
 TASKS_FILE = "docs/archive/TASKS.md"
 
+# Label descriptions are what the GitHub label page shows; keep them short.
 LABELS = {
-    "phase-1": ("Week 1: foundation", "1d76db"),
-    "phase-2": ("Week 2: collection and persistence", "1d76db"),
-    "phase-3": ("Week 3: price intelligence", "1d76db"),
-    "phase-4": ("Week 4: user-facing application", "1d76db"),
-    "phase-5": ("Week 5: notifications and AI", "1d76db"),
-    "phase-6": ("Week 6: hardening and release", "1d76db"),
     "decision": ("Tracks a product-owner decision", "5319e7"),
     "scaffold": ("Project and environment setup", "5319e7"),
     "spike": ("Time-boxed exploration; findings are the deliverable", "5319e7"),
@@ -41,32 +38,42 @@ LABELS = {
     "post-mvp": ("Moved out of a groomed task; not needed for MVP", "c5def5"),
 }
 
-TYPE = {1: "scaffold", 2: "scaffold", 3: "spike", 25: "hardening", 26: "hardening",
-        27: "hardening", 28: "hardening", 29: "hardening"}
-for n in list(range(4, 15)) + [18, 21, 22, 23]:
-    TYPE[n] = "backend"
-for n in [15, 16, 17, 19, 20, 24]:
+# Type label per task number. Everything not listed here is a backend task.
+TYPE = {1: "scaffold", 2: "scaffold", 3: "spike", 30: "scaffold"}
+for n in (25, 26, 27, 28, 29):
+    TYPE[n] = "hardening"
+for n in (15, 16, 17, 19, 20, 24):
     TYPE[n] = "frontend"
-
-PHASES = [(1, 6, "phase-1"), (7, 10, "phase-2"), (11, 14, "phase-3"),
-          (15, 20, "phase-4"), (21, 24, "phase-5"), (25, 29, "phase-6")]
+BACKEND = set(range(4, 15)) | {18, 21, 22, 23}
 
 
-def phase_of(n):
-    for lo, hi, name in PHASES:
-        if lo <= n <= hi:
-            return name
-    raise ValueError(f"no phase for T-{n:03d}")
+def type_of(n):
+    if n in TYPE:
+        return TYPE[n]
+    if n in BACKEND:
+        return "backend"
+    return None
 
 
 def parse_tasks(text):
-    pattern = re.compile(r"^- \[ \] \*\*(T-(\d{3})) — (.+?)\*\*[ ]*\n((?:  .*\n?)+)", re.M)
-    tasks = []
-    for m in pattern.finditer(text):
-        tid, num, title, body = m.group(1), int(m.group(2)), m.group(3), m.group(4)
-        lines = [ln.strip() for ln in body.splitlines() if ln.strip()]
-        tasks.append({"id": tid, "num": num, "title": title, "lines": lines})
-    return tasks
+    """Return (milestones, tasks). Each task carries its milestone title."""
+    heading = re.compile(r"^## Milestone (\d+) — (.+?)(?: \(closed\))?\s*$", re.M)
+    task = re.compile(r"^- \[ \] \*\*(T-(\d{3})) — (.+?)\*\*[ ]*\n((?:  .*\n?)+)", re.M)
+    marks = list(heading.finditer(text))
+    milestones, tasks = [], []
+    for i, m in enumerate(marks):
+        end = marks[i + 1].start() if i + 1 < len(marks) else len(text)
+        title = f"Milestone {m.group(1)}: {m.group(2)}"
+        found = list(task.finditer(text[m.end():end]))
+        if not found:
+            continue  # Milestone 0 holds decisions only; it gets no GitHub milestone.
+        milestones.append((title, m.group(2)))
+        for t in found:
+            lines = [ln.strip() for ln in t.group(4).splitlines() if ln.strip()]
+            tasks.append({"id": t.group(1), "num": int(t.group(2)), "title": t.group(3),
+                          "lines": lines, "milestone": title})
+    tasks.sort(key=lambda t: t["num"])
+    return milestones, tasks
 
 
 def build_body(task):
@@ -85,24 +92,32 @@ def gh(args, repo, capture=True):
     return subprocess.run(cmd, check=True, text=True, capture_output=capture).stdout.strip()
 
 
+def api(path, repo, extra=()):
+    """gh api against the repo; {owner}/{repo} placeholders resolve from the current directory."""
+    base = f"repos/{repo}" if repo else "repos/{owner}/{repo}"
+    return subprocess.run(["gh", "api", f"{base}/{path}", *extra], check=True, text=True,
+                          capture_output=True).stdout.strip()
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--apply", action="store_true", help="create labels and issues (default: dry run)")
+    ap.add_argument("--apply", action="store_true", help="create labels, milestones, issues (default: dry run)")
     ap.add_argument("--repo", help="OWNER/NAME (default: the repository of the current directory)")
     args = ap.parse_args()
 
     path = pathlib.Path(TASKS_FILE)
     if not path.exists():
         sys.exit(f"{TASKS_FILE} not found; run from the repository root")
-    tasks = parse_tasks(path.read_text(encoding="utf-8"))
+    milestones, tasks = parse_tasks(path.read_text(encoding="utf-8"))
 
     nums = [t["num"] for t in tasks]
     if nums != list(range(1, len(nums) + 1)):
         sys.exit(f"task numbers are not dense and ordered: {nums}")
-    missing = [t["id"] for t in tasks if t["num"] not in TYPE]
+    missing = [t["id"] for t in tasks if type_of(t["num"]) is None]
     if missing:
         sys.exit(f"no type label mapped for: {missing}")
-    print(f"parsed {len(tasks)} tasks ({tasks[0]['id']} to {tasks[-1]['id']})")
+    print(f"parsed {len(tasks)} tasks ({tasks[0]['id']} to {tasks[-1]['id']}) "
+          f"in {len(milestones)} milestones")
 
     if args.apply:
         for kind in ("issue", "pr"):
@@ -112,15 +127,22 @@ def main():
         for name, (desc, color) in LABELS.items():
             gh(["label", "create", name, "--description", desc, "--color", color, "--force"], args.repo)
         print(f"created {len(LABELS)} labels")
+        have = {m["title"] for m in json.loads(api("milestones?state=all&per_page=100", args.repo))}
+        for title, name in milestones:
+            if title in have:
+                continue
+            api("milestones", args.repo, ["-f", f"title={title}",
+                                           "-f", f"description=Roadmap section: {name} (docs/ROADMAP.md)"])
+        print(f"milestones ready: {len(milestones)}")
 
     for t in tasks:
         title = f"{t['id']}: {t['title']}"
-        labels = [phase_of(t["num"]), TYPE[t["num"]], "proposed"]
+        labels = [type_of(t["num"]), "proposed"]
         if not args.apply:
-            print(f"[dry run] {title}  labels={','.join(labels)}")
+            print(f"[dry run] {title}  milestone={t['milestone']!r}  labels={','.join(labels)}")
             continue
         out = gh(["issue", "create", "--title", title, "--body", build_body(t),
-                  "--label", ",".join(labels)], args.repo)
+                  "--label", ",".join(labels), "--milestone", t["milestone"]], args.repo)
         number = int(out.rstrip("/").split("/")[-1])
         print(f"created #{number}: {title}")
         if number != t["num"]:
