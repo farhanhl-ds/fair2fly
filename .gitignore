@@ -11,12 +11,19 @@ venv/
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.egg-info/
 
 # Node / Next.js
 node_modules/
 .next/
 out/
 dist/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
 
 # OS / editor
 .DS_Store

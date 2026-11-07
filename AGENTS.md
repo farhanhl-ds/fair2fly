@@ -26,7 +26,17 @@ If sources conflict, stop and report the conflict. Do not silently choose one. T
 
 ## Commands
 
-No application code exists yet. T-001 must add the exact install, development, test, lint, type-check, migration, and E2E commands here. Do not guess commands.
+Run all commands from the repository root. Prerequisites and pinned versions are documented in `README.md`.
+
+- Install: `make install`
+- Development: `make dev`
+- Test: `make test`
+- Lint and format check: `make lint`
+- Type-check: `make typecheck`
+
+`make dev` reads `API_PORT` and `WEB_PORT` from `.env`; copy `.env.example` to `.env` to change the defaults (8000 and 3000). Each git worktree needs its own `.env` with free ports.
+
+The migration command is added by T-004 (issue #4) and the end-to-end test command by T-025 (issue #25). Do not guess either command until then.
 
 ## Core rules
 

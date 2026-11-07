@@ -18,6 +18,60 @@ fair2fly is a flight price intelligence platform: a spec-driven project for disc
 2. [`docs/WORKFLOW.md`](docs/WORKFLOW.md) — roles, loop limits, routing, and handoffs.
 3. GitHub Issues (D-026): canonical tracker. Packet format: [`docs/TASK_TEMPLATE.md`](docs/TASK_TEMPLATE.md).
 
+## Getting started
+
+### Prerequisites
+
+- Linux, macOS, or WSL
+- [uv](https://docs.astral.sh/uv/) 0.13.7 (it can provide Python 3.14)
+- Node.js 26.13.0 with npm 11.20.0 (see `frontend/.nvmrc`)
+- GNU Make 4.4.1
+
+### Setup
+
+```sh
+cp .env.example .env
+make install
+make dev
+```
+
+The API listens on `http://localhost:${API_PORT}/health` and the web app on
+`http://localhost:${WEB_PORT}`. The defaults are 8000 and 3000; change the ports
+in `.env`. `.env` is ignored by git, so each git worktree can use different
+ports and run at the same time.
+
+### Commands
+
+| Command | Purpose |
+|---|---|
+| `make install` | Install backend and frontend dependencies from the committed lockfiles |
+| `make dev` | Run the FastAPI API and Next.js app in development mode |
+| `make test` | Run backend and frontend tests |
+| `make lint` | Run Ruff, ESLint, and Prettier checks |
+| `make typecheck` | Run mypy and `tsc --noEmit` |
+
+The database migration command is added by T-004 (issue #4) and the end-to-end
+test command by T-025 (issue #25).
+
+### Pinned versions
+
+| Tool | Version |
+|---|---|
+| Python | 3.14 (`backend/pyproject.toml`) |
+| uv | 0.13.7 |
+| FastAPI | 0.162.0 |
+| Uvicorn | 0.54.0 |
+| Ruff | 0.17.4 |
+| mypy | 2.4.1 |
+| pytest | 9.2.0 |
+| Node.js | 26.13.0 (`frontend/.nvmrc`) |
+| Next.js | 16.4.5 |
+| React | 19.3.1 |
+| TypeScript | 5.9.3 (latest supported by the Next.js ESLint toolchain) |
+| ESLint | 9.39.5 |
+| Prettier | 3.9.10 |
+| Vitest | 5.1.0 |
+
 ## Documentation map
 
 | File | Purpose |
@@ -36,9 +90,9 @@ fair2fly is a flight price intelligence platform: a spec-driven project for disc
 
 This is an initial specification baseline. Items marked **Open decision**, **Proposed**, or **To validate** must be resolved before the affected implementation begins. Resolve and record decisions in [`docs/DECISIONS.md`](docs/DECISIONS.md). Do not turn assumptions into facts without recording the decision.
 
-## Status snapshot (2026-11-05)
+## Status snapshot (2026-11-06)
 
-- The repository is initialized on `main` with specifications only; there is no application code yet.
+- The repository has a runnable FastAPI and Next.js skeleton with install, development, test, lint, and type-check commands; product features are not implemented yet.
 - Decision state, including accepted Milestone 0 outcomes and everything still open, lives only in [`docs/DECISIONS.md`](docs/DECISIONS.md). A decision gates only the tasks in its *Affects* column.
 - Platform decisions (D-010-D-013) are resolved just before the first task each one affects. Agent model routing (D-023/D-024) is deferred and gates nothing.
 
