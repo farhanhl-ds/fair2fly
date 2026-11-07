@@ -2,11 +2,7 @@
 description: Updates affected docs after QA PASS, in the task's worktree and branch.
 mode: subagent
 permission:
-  edit:
-    "*": deny
-    "docs/**": allow
-    "AGENTS.md": allow
-    "README.md": allow
+  edit: allow
   task: deny
   bash:
     "*": deny
