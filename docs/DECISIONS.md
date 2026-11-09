@@ -30,14 +30,14 @@ D-004, D-007, and D-015 are informed by the T-003 spike. Keep them open until it
 
 ### Platform and data
 
-*No platform decision gates T-001. Resolve each one before the first task in its Affects column starts. Planning order: D-013 before T-002, D-010 before T-018, D-011 before T-020, D-012 before T-022.*
+*No platform decision gates T-001 or T-002 (local Compose needs no hosting target; D-013 gates only T-028). Resolve each one before the first task in its Affects column starts. Planning order: D-010 before T-018, D-011 before T-020, D-012 before T-022.*
 
 | ID | Decision | Status | Owner | Affects |
 |---|---|---|---|---|
 | D-010 | Authentication mechanism, account lifecycle, session/token strategy | open | product owner | FR-008–FR-010, NFR-006, T-018 |
 | D-011 | Exchange-rate provider and refresh policy | open | product owner | FR-035–FR-036, T-020 |
 | D-012 | Email delivery provider | open | product owner | FR-028, T-022 |
-| D-013 | Hosting/deployment target and operational budget | open | product owner | NFR-010, T-002, T-028 |
+| D-013 | Hosting/deployment target and operational budget | open | product owner | NFR-010, T-028 |
 | D-014 | Data retention, PII classification, deletion/export policy, and provider-payload retention | open | product owner | NFR-002, NFR-005, NFR-006, NFR-013 |
 | D-015 | Database schema, itinerary matching algorithm, tolerances, and matching-policy versioning | open | product owner + engineer | FR-016, FR-017, BR-002, BR-003, T-004 |
 | D-016 | API paths, request/response schemas, pagination, error envelope, and ownership boundaries | open | product owner + engineer | API design, T-005, T-011, T-015–T-024 |
@@ -47,6 +47,7 @@ D-004, D-007, and D-015 are informed by the T-003 spike. Keep them open until it
 | D-020 | Accessibility target for core flows (for example WCAG 2.1 AA) | open | product owner | NFR-012, T-015–T-020, T-025 |
 | D-021 | Performance budgets for search, analytics, assistant, and worker jobs | open | product owner + engineer | NFR-011, T-015–T-024 |
 | D-022 | UI design tokens and component library | open | product owner | Design system, T-015–T-020 |
+| D-027 | Repository layout and toolchain baseline | accepted | product owner | T-002 onward, AGENTS.md Commands |
 
 ### Development workflow
 
@@ -116,6 +117,23 @@ Accepted decisions in ID order, with full rationale and consequences. Status of 
   - Cross-referencing: branches are named `issue-<n>`; PRs link issues; QA verdicts and completion evidence are issue comments.
 - **Consequences:** `AGENTS.md`, `README.md`, `ROADMAP.md`, and `WORKFLOW.md` point to the tracker instead of a backlog file. Activation steps: authenticate `gh`, create the remote repository, create the labels, and seed one issue per task in T-xxx order so issue numbers match task numbers.
 - **Affects:** docs/archive/TASKS.md, WORKFLOW.md, AGENTS.md, README.md, ROADMAP.md, `team/*`.
+
+### D-027: Repository layout and toolchain baseline
+
+- **Status:** accepted
+- **Date:** 2026-11-09
+- **Owner:** product owner
+- **Context:** The PM chose these while grooming issue #1 (T-001), and later tasks depend on them, but they were recorded only in that issue body. The documentation pass flagged them as unrecorded.
+- **Decision:**
+  - Monorepo with `backend/` and `frontend/` at the root.
+  - One root `Makefile` is the single entry point: `install`, `dev`, `test`, `lint`, `typecheck`.
+  - Backend: `uv` (committed lockfile), Ruff for lint and format, mypy, pytest.
+  - Frontend: npm (committed lockfile), ESLint, Prettier, `tsc --noEmit`, Vitest.
+  - API and web ports come from `API_PORT` and `WEB_PORT`, with defaults in `.env.example`, so parallel worktrees do not collide.
+  - Tool versions are pinned in the repository and listed in `README.md`, which is the single source for them.
+  - The project is named `fair2fly` in `pyproject.toml`, `package.json`, and the README.
+- **Consequences:** `AGENTS.md` Commands lists the exact commands. CI (T-030) calls the same `make` targets. Changing any of these choices needs a new decision entry first.
+- **Affects:** T-002 onward, `AGENTS.md`, `README.md`.
 
 ## Superseded decisions
 

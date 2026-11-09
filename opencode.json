@@ -1,0 +1,29 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "orchestrator",
+  "instructions": ["AGENTS.md"],
+  "permission": {
+    "external_directory": {
+      "*": "ask",
+      "~/wt/**": "allow"
+    },
+    "bash": {
+      "rm *": "deny",
+      "rmdir *": "deny",
+      "unlink *": "deny",
+      "git push --force*": "deny",
+      "git push -f*": "deny",
+      "git rebase*": "deny",
+      "git merge*": "deny",
+      "git reset --hard*": "deny",
+      "git clean*": "deny",
+      "git branch -D*": "deny",
+      "git branch -d*": "deny",
+      "git worktree remove*": "deny",
+      "gh issue close*": "deny",
+      "gh pr merge*": "deny",
+      "pkill*": "deny",
+      "killall*": "deny"
+    }
+  }
+}
