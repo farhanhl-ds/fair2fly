@@ -72,6 +72,19 @@ test command by T-025 (issue #25).
 | Prettier | 3.9.10 |
 | Vitest | 5.1.0 |
 
+## Continuous integration
+
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml) defines the `ci` workflow
+and its single `ci` job. It runs on every pull request that is opened, reopened,
+or updated, and on every push to `main`. The job calls the same root `Makefile`
+entry points as a local checkout — `make install`, `make lint`,
+`make typecheck`, and `make test` — so CI and local runs cannot disagree.
+
+After this workflow merges, the product owner must protect `main` in the
+repository settings: require a pull request, require the `ci` status check,
+require the branch to be up to date before merging, and allow only the owner to
+merge.
+
 ## Documentation map
 
 | File | Purpose |

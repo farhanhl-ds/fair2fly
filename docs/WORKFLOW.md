@@ -189,7 +189,7 @@ Everything stateful is isolated per worktree: database name, cache or queue name
 
 ### Before merging
 
-QA's verdict applies to the pushed commit. If `main` moved after QA PASS, re-run the checks on the merged result before merging. Once CI exists, require it on the pull request.
+QA's verdict applies to the pushed commit. If `main` moved after QA PASS, re-run the checks on the merged result before merging. The `ci` check documented in [`README.md`](../README.md#continuous-integration) must pass on the pull request.
 
 ### Parallel waves (not in use)
 
